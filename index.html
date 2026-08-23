@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Politički kompas Srbije</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <h1>Politički kompas Srbije</h1>
+    <p>
+        Pronađite političke opcije koje su najbliže vašim stavovima.
+    </p>
+</header>
+
+
+<main>
+
+    <!-- POČETNA STRANA -->
+
+    <section id="start-screen" class="card">
+
+        <h2>Kako funkcioniše test?</h2>
+
+        <p>
+            Vaši odgovori će biti upoređeni sa stavovima političkih stranaka.
+        </p>
+
+        <p>
+            Na kraju ćete dobiti procenat podudarnosti sa svakom opcijom.
+        </p>
+
+<h3>Izaberite izbore za koje želite da uradite test:</h3>
+
+<div class="election-options">
+
+    <button id="elections-2023-coalitions">
+        Izbori 2023
+        <br>
+    </button>
+
+    <button id="elections-2023-parties">
+        Sve stranke
+        <br>
+    </button>
+
+    <button id="elections-2026">
+        Izbori 2026
+        <br>
+    </button>
+
+</div>
+
+<div class="start-bottom">
+
+    <button id="party-ratings-btn">
+        Ocene stranaka
+    </button>
+
+
+</div>
+
+    </section>
+
+<section id="party-ratings-screen" class="card hidden">
+
+    <h2>Ocene stranaka</h2>
+
+    <p>
+        Pregled ocena koje su dodeljene političkim opcijama za svako pitanje.
+    </p>
+
+    <div id="party-ratings-table"></div>
+
+    <p>
+        Primedbe i ispravke:
+        <a href="mailto:politickikvizzasrbiju@gmail.com">
+            politickikvizzasrbiju@gmail.com
+        </a>
+    </p>
+
+    <button id="back-start-from-ratings-btn">
+        Nazad
+    </button>
+
+</section>
+
+    <!-- TEST -->
+
+    <section id="quiz-screen" class="card hidden">
+
+
+        <div class="progress-container">
+
+            <div id="progress-bar"></div>
+
+        </div>
+
+
+        <div id="progress-text">
+            Pitanje 1 / 30
+        </div>
+
+
+        <h2 id="question-text">
+            Pitanje
+        </h2>
+
+
+
+        <div id="answers">
+
+
+            <button class="answer">
+                Potpuno se slažem
+            </button>
+
+
+            <button class="answer">
+                Uglavnom se slažem
+            </button>
+
+
+            <button class="answer">
+                Neutralno
+            </button>
+
+
+            <button class="answer">
+                Uglavnom se ne slažem
+            </button>
+
+
+            <button class="answer">
+                Potpuno se ne slažem
+            </button>
+
+
+        </div>
+
+
+
+        <div class="navigation">
+
+
+            <button id="back-btn">
+                Nazad
+            </button>
+
+
+
+
+        </div>
+
+
+    </section>
+
+<section id="priority-screen" class="card hidden">
+
+<h2>Važnost oblasti</h2>
+
+<p>Ocenite koliko su vam sledeće oblasti važne (1–10).</p>
+
+<label>Ekonomija</label>
+<select id="priority-economic">
+    <option>1</option><option>2</option><option>3</option>
+    <option>4</option><option>5</option><option>6</option>
+    <option>7</option><option>8</option><option>9</option>
+    <option selected>10</option>
+</select>
+
+<br><br>
+
+<label>Društvene vrednosti</label>
+<select id="priority-social">
+    <option>1</option><option>2</option><option>3</option>
+    <option>4</option><option>5</option><option>6</option>
+    <option>7</option><option>8</option><option>9</option>
+    <option selected>10</option>
+</select>
+
+<br><br>
+
+<label>Spoljna politika</label>
+<select id="priority-foreign">
+    <option>1</option><option>2</option><option>3</option>
+    <option>4</option><option>5</option><option>6</option>
+    <option>7</option><option>8</option><option>9</option>
+    <option selected>10</option>
+</select>
+
+<br><br>
+
+<label>Globalizam</label>
+<select id="priority-global">
+    <option>1</option><option>2</option><option>3</option>
+    <option>4</option><option>5</option><option>6</option>
+    <option>7</option><option>8</option><option>9</option>
+    <option selected>10</option>
+</select>
+
+<button id="priority-next">
+Prikaži rezultate
+</button>
+
+</section>
+
+
+    <!-- REZULTATI -->
+
+
+   <section id="result-screen" class="card hidden">
+
+<h2>
+    Vaš rezultat
+</h2>
+
+<p>
+    Najbliže političke opcije:
+</p>
+
+
+<div id="results">
+
+</div>
+
+<div id="election-messages" class="election-messages hidden">
+
+    <p>
+        Koalicije su formirane na osnovu broju mandata na izbornoj listi i stavova stranaka članova koalicije.
+    </p>
+
+    <p>
+        Prosečan birač predstavlja matematički prosek, izračunat na osnovu izbornih rezultata iz 2023. godine (ne računajući stranke koje su nastupale kao stranke nacionalnih manjina) i stava koalicije.
+    </p>
+
+</div>
+
+
+<button id="analysis-btn">
+    Detaljna analiza
+</button>
+
+<button id="restart-btn">
+    Ponovi test
+</button>
+
+</section>
+
+
+
+<section id="analysis-screen" class="card hidden">
+
+<h2>
+    Detaljna analiza
+</h2>
+
+
+<div class="analysis-columns">
+
+    <div>
+        <h3>Ekonomija</h3>
+        <div id="economic-results"></div>
+    </div>
+
+
+    <div>
+        <h3>Društvene vrednosti</h3>
+        <div id="social-results"></div>
+    </div>
+
+
+    <div>
+        <h3>Spoljna politika</h3>
+        <div id="foreign-results"></div>
+    </div>
+
+    <div>
+        <h3>Globalizam</h3>
+        <div id="global-results"></div>
+    </div>
+
+</div>
+
+
+<div id="ideology-results">
+
+</div>
+
+
+<button id="scale-btn">
+    Ideološka skala
+</button>
+
+<button id="back-results-btn">
+    Nazad na rezultate
+</button>
+
+<button class="restart-test-btn">
+    Ponovi test
+</button>
+
+
+</section>
+
+
+
+
+<section id="scale-screen" class="card hidden">
+
+<h2>
+    Ideološka skala
+</h2>
+
+
+<table>
+
+
+<thead>
+<tr>
+<th>Opcija</th>
+<th>Ukupna pozicija</th>
+<th>Ekonomija</th>
+<th>Društvo</th>
+<th>Spoljna politika</th>
+<th>Globalizam</th>
+</tr>
+</thead>
+
+
+
+<tbody id="scale-table">
+
+</tbody>
+
+
+</table>
+
+<button id="graph-btn">
+    Grafički prikaz
+</button>
+
+<button id="back-analysis-btn">
+    Nazad na detaljnu analizu
+</button>
+
+<button class="restart-test-btn">
+    Ponovi test
+</button>
+
+</section>
+
+<section id="graph-screen" class="card hidden">
+
+<h2>Grafički prikaz</h2>
+
+<div id="partyLegend"></div>
+
+<canvas id="ideologyChart" width="800" height="600"></canvas>
+
+
+<h3>Ekonomska pozicija</h3>
+<canvas id="economicChart" width="800" height="150"></canvas>
+
+
+<h3>Društvena pozicija</h3>
+<canvas id="socialChart" width="800" height="150"></canvas>
+
+
+<h3>Spoljnopolitička pozicija</h3>
+<canvas id="foreignChart" width="800" height="150"></canvas>
+
+<h3>Suverenizam pozicija</h3>
+<canvas id="globalChart" width="800" height="150"></canvas>
+
+<button id="eu-btn">
+    Evropske grupacije
+</button>
+
+<button id="back-scale-btn">
+    Nazad na ideološku skalu
+</button>
+
+<button class="restart-test-btn">
+    Ponovi test
+</button>
+
+</section>
+
+<section id="eu-screen" class="card hidden">
+
+    <h2>Evropske političke grupacije</h2>
+
+    <p>
+        Pogledajte kojoj političkoj grupaciji u Evropskom parlamentu
+        su vaši stavovi najbliži.
+    </p>
+
+    <div id="eu-results"></div>
+
+    <button id="eu-analysis-btn">
+        Detaljna analiza evropskih grupacija
+    </button>
+
+    <button id="back-graph-btn">
+        Nazad na grafički prikaz
+    </button>
+
+<button class="restart-test-btn">
+    Ponovi test
+</button>
+
+</section>
+
+
+
+<section id="eu-analysis-screen" class="card hidden">
+
+    <h2>Detaljna analiza evropskih grupacija</h2>
+
+    <div id="eu-economic-results">
+        <h3>Ekonomija</h3>
+    </div>
+
+    <div id="eu-social-results">
+        <h3>Društvene vrednosti</h3>
+    </div>
+
+    <div id="eu-foreign-results">
+        <h3>Spoljna politika</h3>
+    </div>
+
+    <div id="eu-global-results">
+        <h3>Globalizam</h3>
+    </div>
+
+    <button id="eu-graph-btn">
+        Grafički prikaz EU grupacija
+    </button>
+
+    <button id="back-eu-results-btn">
+        Nazad na evropske grupacije
+    </button>
+
+<button class="restart-test-btn">
+    Ponovi test
+</button>
+
+</section>
+
+<section id="eu-graph-screen" class="card hidden">
+
+    <h2>Grafički prikaz EU grupacija</h2>
+
+    <canvas id="euIdeologyChart" width="800" height="600"></canvas>
+
+    <canvas id="euEconomicChart" width="800" height="160"></canvas>
+
+    <canvas id="euSocialChart" width="800" height="160"></canvas>
+
+    <canvas id="euForeignChart" width="800" height="160"></canvas>
+
+    <canvas id="euGlobalChart" width="800" height="160"></canvas>
+
+    <button id="back-eu-results-from-graph-btn">
+        Nazad na evropske grupacije
+    </button>
+
+<button class="restart-test-btn">
+    Ponovi test
+</button>
+
+</section>
+
+
+<div id="chart-tooltip"></div>
+</main>
+
+
+
+<footer>
+
+<p>
+    Politički kompas Srbije © 2026
+</p>
+
+</footer>
+
+
+
+<script src="questions.js"></script>
+<script src="parties.js"></script>
+<script src="eu-groups.js"></script>
+<script src="analysis.js"></script>
+<script src="eu-analysis.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

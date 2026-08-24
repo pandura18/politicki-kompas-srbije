@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pandura18.github.io/politicki-kompas-srbije/sitemap.xml

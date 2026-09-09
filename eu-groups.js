@@ -5,6 +5,7 @@ answers: [
 4, 3, 2, 4, 3, 2, 2, 5, 2, 2, 3, 3, 4, 4, 4, 2, 4, 3, 4, 4, 5, 5, 1, 1, 1, 1, 1, 3, 2, 5
 ],
         fullName: "Evropska narodna partija",
+	color:"#3399FF",
         economic: 3.5,
         social: 1.5,
         foreign: -10,
@@ -18,12 +19,14 @@ parties: [
     ]
     },
 
+
     {
         name: "S&D",
 answers: [
 2, 5, 4, 5, 4, 3, 5, 4, 4, 3, 5, 5, 1, 2, 5, 1, 3, 3, 3, 3, 5, 5, 1, 1, 1, 2, 1, 2, 3, 4
 ],
         fullName: "Progresivna alijansa socijalista i demokrata",
+	color:"#F0001C",
         economic: -4.5,
         social: -5.5,
         foreign: -10,
@@ -45,6 +48,7 @@ answers: [
 4, 4, 2, 5, 3, 1, 3, 5, 2, 1, 5, 5, 2, 3, 5, 1, 3, 3, 3, 3, 5, 5, 1, 1, 1, 2, 1, 2, 3, 4
 ],
         fullName: "Renew Europe",
+	color:"#FFD700",
         economic: 3,
         social: -4.5,
         foreign: -10,
@@ -63,6 +67,7 @@ answers: [
 2, 5, 4, 5, 3, 4, 5, 4, 4, 2, 5, 5, 1, 2, 5, 1, 2, 4, 2, 2, 4, 5, 1, 1, 2, 3, 1, 1, 4, 2
 ],
         fullName: "Zeleni/Evropska slobodna alijansa",
+	color:"#57B45F",
         economic: -4,
         social: -6.5,
         foreign: -8,
@@ -78,11 +83,12 @@ parties: [
     {
         name: "ECR",
 answers: [
-5, 3, 2, 2, 4, 2, 2, 5, 2, 3, 2, 2, 5, 5, 4, 2, 5, 4, 5, 5, 5, 3, 2, 2, 2, 2, 2, 5, 4, 5
+5, 3, 2, 2, 4, 2, 2, 5, 2, 3, 1, 1, 5, 5, 4, 2, 5, 4, 5, 5, 5, 3, 2, 2, 2, 2, 2, 5, 4, 5
 ],
         fullName: "Evropski konzervativci i reformisti",
+	color:"#186DA9",
         economic: 4,
-        social: 5,
+        social: 6.5,
         foreign: -5,
         global: 3,
 parties: [
@@ -99,6 +105,7 @@ answers: [
 5, 3, 3, 2, 5, 3, 3, 4, 4, 5, 2, 1, 5, 5, 4, 2, 5, 5, 5, 5, 2, 1, 4, 5, 4, 5, 4, 5, 5, 5
 ],
         fullName: "Patriote za Evropu",
+	color:"#253082",
         economic: -0.5,
         social: 6.5,
         foreign: 7,
@@ -116,6 +123,7 @@ answers: [
 5, 2, 2, 2, 5, 4, 3, 4, 4, 5, 1, 1, 5, 5, 4, 2, 5, 5, 5, 5, 1, 1, 5, 5, 5, 5, 5, 5, 5, 5
 ],
         fullName: "Evropa suverenih nacija",
+	color:"#13517E",
         economic: 0,
         social: 7,
         foreign: 10,
@@ -135,6 +143,7 @@ answers: [
 1, 5, 4, 5, 5, 5, 5, 3, 5, 3, 5, 5, 1, 2, 5, 1, 2, 3, 2, 2, 3, 4, 3, 2, 2, 3, 1, 2, 4, 3
 ],
         fullName: "The Left",
+	color:"#B71C1C",
         economic: -7.5,
         social: -7,
         foreign: -3,

@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Politički kompas Srbije</title>
+    <title>Politički kompas Srbije – Politički test i izbori</title>
 
 <link rel="canonical" href="https://politicki-kompas-srbije.rs/">
-    
-<meta name="description" content="Politički kompas Srbije – uporedite svoje političke stavove sa političkim strankama, izbornim koalicijama i evropskim političkim grupacijama.">
+
+<meta name="description" content="Politički kompas Srbije – uradite politički test i uporedite svoje stavove sa političkim strankama i koalicijama pred izbore u Srbiji.">
 <meta name="keywords" content="Politički kompas Srbije, politički test, političke stranke Srbije, izbori Srbija, političke grupacije, Evropski parlament">
 <meta name="author" content="Politički kompas Srbije">
-    
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,9 +19,15 @@
 
 <header>
     <h1>Politički kompas Srbije</h1>
-    <p>
-        Pronađite političke opcije koje su najbliže vašim stavovima.
-    </p>
+<p>
+    Uradite politički test i saznajte koje su političke stranke
+    i koalicije u Srbiji najbliže vašim stavovima.
+</p>
+
+<p>
+    Uporedite svoje stavove pred izbore u Srbiji i pogledajte
+    procenat podudarnosti sa različitim političkim opcijama.
+</p>
 </header>
 
 
@@ -172,7 +178,7 @@
 
 <p>Ocenite koliko su vam sledeće oblasti važne (1–10).</p>
 
-<label>Ekonomija</label>
+<label>Ekonomija (pitanja 1–10)</label>
 <select id="priority-economic">
     <option>1</option><option>2</option><option>3</option>
     <option>4</option><option>5</option><option>6</option>
@@ -182,7 +188,7 @@
 
 <br><br>
 
-<label>Društvene vrednosti</label>
+<label>Društvene vrednosti (pitanja 11–20)</label>
 <select id="priority-social">
     <option>1</option><option>2</option><option>3</option>
     <option>4</option><option>5</option><option>6</option>
@@ -192,7 +198,7 @@
 
 <br><br>
 
-<label>Spoljna politika</label>
+<label>Spoljna politika (pitanja 21–25)</label>
 <select id="priority-foreign">
     <option>1</option><option>2</option><option>3</option>
     <option>4</option><option>5</option><option>6</option>
@@ -202,7 +208,7 @@
 
 <br><br>
 
-<label>Globalizam</label>
+<label>Globalizam (pitanja 26–30)</label>
 <select id="priority-global">
     <option>1</option><option>2</option><option>3</option>
     <option>4</option><option>5</option><option>6</option>
@@ -241,20 +247,8 @@ Prikaži rezultate
         Koalicije su formirane na osnovu broju mandata na izbornoj listi i stavova stranaka članova koalicije.
     </p>
 
-    <p>
-        Prosečan birač predstavlja matematički prosek, izračunat na osnovu izbornih rezultata iz 2023. godine (ne računajući stranke koje su nastupale kao stranke nacionalnih manjina) i stava koalicije.
-    </p>
-
 </div>
 
-
-<button id="analysis-btn">
-    Detaljna analiza
-</button>
-
-<button id="restart-btn">
-    Ponovi test
-</button>
 
 </section>
 
@@ -299,22 +293,7 @@ Prikaži rezultate
 </div>
 
 
-<button id="scale-btn">
-    Ideološka skala
-</button>
-
-<button id="back-results-btn">
-    Nazad na rezultate
-</button>
-
-<button class="restart-test-btn">
-    Ponovi test
-</button>
-
-
 </section>
-
-
 
 
 <section id="scale-screen" class="card hidden">
@@ -347,17 +326,6 @@ Prikaži rezultate
 
 </table>
 
-<button id="graph-btn">
-    Grafički prikaz
-</button>
-
-<button id="back-analysis-btn">
-    Nazad na detaljnu analizu
-</button>
-
-<button class="restart-test-btn">
-    Ponovi test
-</button>
 
 </section>
 
@@ -384,17 +352,6 @@ Prikaži rezultate
 <h3>Suverenizam pozicija</h3>
 <canvas id="globalChart" width="800" height="150"></canvas>
 
-<button id="eu-btn">
-    Evropske grupacije
-</button>
-
-<button id="back-scale-btn">
-    Nazad na ideološku skalu
-</button>
-
-<button class="restart-test-btn">
-    Ponovi test
-</button>
 
 </section>
 
@@ -409,17 +366,6 @@ Prikaži rezultate
 
     <div id="eu-results"></div>
 
-    <button id="eu-analysis-btn">
-        Detaljna analiza evropskih grupacija
-    </button>
-
-    <button id="back-graph-btn">
-        Nazad na grafički prikaz
-    </button>
-
-<button class="restart-test-btn">
-    Ponovi test
-</button>
 
 </section>
 
@@ -445,17 +391,6 @@ Prikaži rezultate
         <h3>Globalizam</h3>
     </div>
 
-    <button id="eu-graph-btn">
-        Grafički prikaz EU grupacija
-    </button>
-
-    <button id="back-eu-results-btn">
-        Nazad na evropske grupacije
-    </button>
-
-<button class="restart-test-btn">
-    Ponovi test
-</button>
 
 </section>
 
@@ -473,13 +408,6 @@ Prikaži rezultate
 
     <canvas id="euGlobalChart" width="800" height="160"></canvas>
 
-    <button id="back-eu-results-from-graph-btn">
-        Nazad na evropske grupacije
-    </button>
-
-<button class="restart-test-btn">
-    Ponovi test
-</button>
 
 </section>
 

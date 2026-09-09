@@ -161,7 +161,7 @@ if (elections2026) {
     elections2026.onclick = function() {
 
         alert(
-            "Izbori 2026. godine još nisu raspisani."
+            "Izborne liste za izbore 2026. godine još nisu poznate."
         );
 
     };

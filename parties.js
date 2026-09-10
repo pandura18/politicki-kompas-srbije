@@ -404,7 +404,7 @@ const parties2023Coalitions = [
     economic: -1,
     social: 3.5,
     foreign: 0,
-    global: 10,
+    global: 7,
 color:"#242970"
 },
 

@@ -21,7 +21,7 @@ const questions = [
 "Obavezni vojni rok treba ponovo uvesti.",
 "Policija treba da ima veća ovlašćenja.",
 "Srbija treba da produbi saradnju sa SAD.",
-"EU nema aletrnativu.",
+"EU nema alternativu.",
 "Treba ući u BRIKS.",
 "Zapad je negativno orjentisan prema Srbiji.",
 "Kina je pouzdaniji partner od Zapada.",

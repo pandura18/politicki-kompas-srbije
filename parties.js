@@ -42,13 +42,13 @@ const parties2023 = [
 {
     name: "EU - Ekološki ustanak - Aleksandar Jovanović Ćuta",
     answers: [
-        2, 5, 3, 5, 4, 4, 5, 3, 3, 2, 5, 4, 2, 2, 5, 1, 3, 5, 1, 1, 4, 4, 1, 2, 1, 5, 1, 2, 2, 2
+        2, 5, 3, 5, 4, 4, 5, 3, 3, 2, 5, 4, 2, 2, 5, 1, 3, 5, 1, 1, 4, 4, 1, 2, 1, 5, 3, 4, 2, 2
     ],
-    total: -4.83,
+    total: -4.17,
     economic: -4,
     social: -5.5,
     foreign: -7,
-    global: -3,
+    global: 1,
     color: "#3CE84B"
 },
 
@@ -411,13 +411,13 @@ color:"#242970"
     {
     name: "Srbija protiv nasilja",
     answers: [
-        3, 5, 4, 4, 5, 4, 5, 4, 3, 2, 4, 4, 2, 2, 5, 1, 2, 4, 2, 2, 5, 5, 1, 1, 1, 4, 2, 2, 3, 3
+        3, 5, 4, 4, 5, 4, 5, 4, 3, 2, 4, 4, 2, 2, 5, 1, 2, 4, 2, 2, 5, 5, 1, 1, 1, 4, 2, 3, 3, 3
     ],
 	total: -4.67,
 economic: -3.5,
 social: -5,
 foreign: -10,
-global: -1,
+global: 0,
 color:"#F22C27"
 },
 

@@ -539,3 +539,17 @@ global: -2,
 color:"#03ABB5"
 },
 ];
+const parties2026 = [
+        {
+    name: "Ujedinjena Srbija",
+    answers: [
+        3, 5, 4, 3, 5, 4, 2, 5, 4, 1, 4, 3, 5, 5, 2, 1, 4, 3, 5, 5, 4, 4, 3, 4, 4, 5, 5, 4, 4, 4
+    ],
+    total: 2,
+    economic: -1,
+    social: 3.5,
+    foreign: 0,
+    global: 7,
+color:"#242970"
+},
+];

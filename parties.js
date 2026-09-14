@@ -552,4 +552,16 @@ const parties2026 = [
     global: 7,
 color:"#242970"
 },
+	{
+    name: "Faktor stabilnosti",
+    answers: [
+        2, 5, 5, 4, 5, 5, 5, 4, 4, 2, 3, 3, 3, 5, 2, 1, 4, 4, 4, 4, 4, 4, 3, 4, 4, 5, 5, 5, 5, 5
+    ],
+    total: 0.67,
+    economic: -5.5,
+    social: 2.5,
+    foreign: 0,
+    global: 10,
+    color: "#880E4F"
+},
 ];

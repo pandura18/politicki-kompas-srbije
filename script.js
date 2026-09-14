@@ -160,9 +160,13 @@ if (elections2026) {
 
     elections2026.onclick = function() {
 
-        alert(
-            "Izborne liste za izbore 2026. godine još nisu poznate."
-        );
+        console.log("IZBOR: IZBORI 2026");
+
+        currentElection = "2026";
+
+        parties = parties2026;
+
+        startTest();
 
     };
 

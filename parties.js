@@ -308,7 +308,7 @@ const parties2023 = [
     social: 3,
     foreign: 0,
     global: 10,
-    color: "#880E4F"
+    color: "#FF0000"
 },
 
 {

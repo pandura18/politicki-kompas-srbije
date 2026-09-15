@@ -573,7 +573,7 @@ color:"#242970"
     social: 2.5,
     foreign: 0,
     global: 10,
-    color: "#880E4F"
+    color: "#FF0000"
 },
 		{
     name: "Studenska lista-Studenti pobeđuju",

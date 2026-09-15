@@ -260,7 +260,18 @@ const parties2023 = [
     global: -2,
     color: "#FFC7C7"
 },
-
+		{
+    name: " SL - Studenska lista-Studenti pobeđuju - Studenti",
+    answers: [
+        2, 4, 3, 3, 4, 3, 4, 5, 2, 4, 3, 5, 2, 3, 5, 1, 3, 4, 1, 1, 3, 4, 3, 2, 3, 4, 1, 3, 4, 2
+    ],
+    total: -2.5,
+    economic: -1,
+    social: -5,
+    foreign: -2,
+    global: -1,
+    color: "#942651"
+},
 {
     name: "SNP - Srpska narodna partija - Nenad Popović",
     answers: [
@@ -563,5 +574,17 @@ color:"#242970"
     foreign: 0,
     global: 10,
     color: "#880E4F"
+},
+		{
+    name: "Studenska lista-Studenti pobeđuju",
+    answers: [
+        2, 4, 3, 3, 4, 3, 4, 5, 2, 4, 3, 5, 2, 3, 5, 1, 3, 4, 1, 1, 3, 4, 3, 2, 3, 4, 1, 3, 4, 2
+    ],
+    total: -2.5,
+    economic: -1,
+    social: -5,
+    foreign: -2,
+    global: -1,
+    color: "#942651"
 },
 ];

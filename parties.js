@@ -261,7 +261,7 @@ const parties2023 = [
     color: "#FFC7C7"
 },
 		{
-    name: " SL - Studenska lista-Studenti pobeđuju - Studenti",
+    name: " SL - Studenti pobeđuju - Studenti",
     answers: [
         2, 4, 3, 3, 4, 3, 4, 5, 2, 4, 3, 5, 2, 3, 5, 1, 3, 4, 1, 1, 3, 4, 3, 2, 3, 4, 1, 3, 4, 2
     ],
@@ -576,7 +576,7 @@ color:"#242970"
     color: "#FF0000"
 },
 		{
-    name: "Studenska lista-Studenti pobeđuju",
+    name: "Studenti pobeđuju",
     answers: [
         2, 4, 3, 3, 4, 3, 4, 5, 2, 4, 3, 5, 2, 3, 5, 1, 3, 4, 1, 1, 3, 4, 3, 2, 3, 4, 1, 3, 4, 2
     ],

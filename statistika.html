@@ -1,4 +1,3 @@
-ka.html možeš da zameniš ovim:
 <!DOCTYPE html>
 <html lang="sr">
 
@@ -399,84 +398,110 @@ function prikaziIdeologiju(ideologija) {
 /* POLITIČKE OPCIJE */
 /* ============================================= */
 
-function prikaziStranke(stranke) {
+function prikaziStranke(izboriPodaci) {
 
-    if (
-        !stranke ||
-        stranke.length === 0
-    ) {
-
+    var container =
         document.getElementById(
             "statistics-parties"
-        ).innerHTML =
+        );
 
-            "<p>" +
-            "Još nema dovoljno podataka o " +
-            "podudarnosti političkih opcija." +
-            "</p>";
+    if (
+        !izboriPodaci ||
+        izboriPodaci.length === 0
+    ) {
+
+        container.innerHTML =
+            "<p>Još nema podataka o " +
+            "podudarnosti političkih opcija.</p>";
 
         return;
 
     }
 
 
-    let html =
-
-        "<table class='statistics-table'>" +
-
-        "<thead>" +
-
-        "<tr>" +
-
-        "<th>Politička opcija</th>" +
-
-        "<th>Prosečna podudarnost</th>" +
-
-        "<th>1. mesto</th>" +
-
-        "</tr>" +
-
-        "</thead>" +
-
-        "<tbody>";
+    var html = "";
 
 
-    stranke.forEach(function(item) {
+    izboriPodaci.forEach(function(izbor) {
 
         html +=
 
+            "<h3>" +
+            izbor.izbori +
+            "</h3>";
+
+
+        if (
+            !izbor.stranke ||
+            izbor.stranke.length === 0
+        ) {
+
+            html +=
+                "<p>Nema podataka.</p>";
+
+            return;
+
+        }
+
+
+        html +=
+
+            "<table class='statistics-table'>" +
+
+            "<thead>" +
+
             "<tr>" +
 
-            "<td>" +
-            item.name +
-            "</td>" +
+            "<th>Politička opcija</th>" +
 
-            "<td>" +
-            formatNumber(item.prosek) +
-            " %</td>" +
+            "<th>Prosečna podudarnost</th>" +
 
-            "<td>" +
-            formatNumber(item.prvoMesto) +
-            " %</td>" +
+            "<th>1. mesto</th>" +
 
-            "</tr>";
+            "</tr>" +
+
+            "</thead>" +
+
+            "<tbody>";
+
+
+        izbor.stranke.forEach(function(item) {
+
+            html +=
+
+                "<tr>" +
+
+                "<td>" +
+                item.name +
+                "</td>" +
+
+                "<td>" +
+                formatNumber(item.prosek) +
+                " %</td>" +
+
+                "<td>" +
+                formatNumber(item.prvoMesto) +
+                " %</td>" +
+
+                "</tr>";
+
+        });
+
+
+        html +=
+
+            "</tbody>" +
+
+            "</table>" +
+
+            "<br>";
 
     });
 
 
-    html +=
-
-        "</tbody>" +
-
-        "</table>";
-
-
-    document.getElementById(
-        "statistics-parties"
-    ).innerHTML = html;
+    container.innerHTML = html;
 
 }
-
 
 /* ============================================= */
 /* UČITAVANJE */

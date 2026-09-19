@@ -587,4 +587,16 @@ color:"#242970"
     global: -1,
     color: "#942651"
 },
+	{
+    name: "Autentična desnica",
+    answers: [
+        5, 3, 3, 3, 4, 5, 2, 5, 3, 4, 2, 2, 5, 5, 5, 5, 5, 5, 5, 3, 2, 1, 4, 5, 4, 5, 5, 5, 5, 5
+    ],
+    total: 5,
+    economic: 0.5,
+    social: 6,
+    foreign: 7,
+    global: 10,
+    color: "#3119FF"
+},
 ];

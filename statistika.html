@@ -1,32 +1,105 @@
+ka.html možeš da zameniš ovim:
 <!DOCTYPE html>
 <html lang="sr">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Statistika – Politički kompas Srbije</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="icon" type="image/png" href="favicon.png">
+    <title>
+        Statistika – Politički kompas Srbije
+    </title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="icon"
+        type="image/png"
+        href="favicon.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        .statistics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .statistics-table th,
+        .statistics-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .statistics-table th {
+            font-weight: bold;
+        }
+
+        .statistics-table td:nth-child(2),
+        .statistics-table td:nth-child(3) {
+            text-align: center;
+        }
+
+        .statistics-table th:nth-child(2),
+        .statistics-table th:nth-child(3) {
+            text-align: center;
+        }
+
+        @media (max-width: 700px) {
+
+            .statistics-table {
+                font-size: 14px;
+            }
+
+            .statistics-table th,
+            .statistics-table td {
+                padding: 7px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
 <header>
-    <h1>Statistika – Politički kompas Srbije</h1>
+
+    <h1>
+        Statistika – Politički kompas Srbije
+    </h1>
 
     <p>
-        Prosečni odgovori i prosečne ideološke pozicije korisnika
-        koji su uradili Politički kompas Srbije.
+        Prosečni odgovori i prosečne ideološke pozicije
+        korisnika koji su uradili Politički kompas Srbije.
     </p>
+
 </header>
+
 
 <main>
 
+    <!-- ================================================= -->
+    <!-- PROSEČNI ODGOVORI -->
+    <!-- ================================================= -->
+
     <section class="card">
 
-        <h2>Prosečan odgovor na svako pitanje</h2>
+        <h2>
+            Prosečan odgovor na svako pitanje
+        </h2>
 
         <div id="statistics-questions">
             Učitavanje statistike...
@@ -35,9 +108,15 @@
     </section>
 
 
+    <!-- ================================================= -->
+    <!-- IDEOLOŠKE POZICIJE -->
+    <!-- ================================================= -->
+
     <section class="card">
 
-        <h2>Prosečne ideološke pozicije</h2>
+        <h2>
+            Prosečne ideološke pozicije
+        </h2>
 
         <div id="statistics-ideology">
             Učitavanje statistike...
@@ -46,9 +125,32 @@
     </section>
 
 
+    <!-- ================================================= -->
+    <!-- POLITIČKE OPCIJE -->
+    <!-- ================================================= -->
+
     <section class="card">
 
-        <button onclick="window.location.href='index.html'">
+        <h2>
+            Statistika političkih opcija
+        </h2>
+
+        <div id="statistics-parties">
+            Učitavanje statistike...
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- NAZAD -->
+    <!-- ================================================= -->
+
+    <section class="card">
+
+        <button
+            onclick="window.location.href='index.html'"
+        >
             Nazad
         </button>
 
@@ -79,9 +181,11 @@ function loadStatistics() {
         .then(function(response) {
 
             if (!response.ok) {
+
                 throw new Error(
                     "Greška pri učitavanju statistike."
                 );
+
             }
 
             return response.json();
@@ -90,9 +194,17 @@ function loadStatistics() {
 
         .then(function(data) {
 
-            prikaziPitanja(data.pitanja);
+            prikaziPitanja(
+                data.pitanja
+            );
 
-            prikaziIdeologiju(data.ideologija);
+            prikaziIdeologiju(
+                data.ideologija
+            );
+
+            prikaziStranke(
+                data.stranke
+            );
 
         })
 
@@ -109,6 +221,10 @@ function loadStatistics() {
                 "statistics-ideology"
             ).innerHTML = "";
 
+            document.getElementById(
+                "statistics-parties"
+            ).innerHTML = "";
+
         });
 
 }
@@ -121,19 +237,42 @@ function formatNumber(value) {
         value === null ||
         typeof value === "undefined"
     ) {
+
         return "-";
+
     }
 
-    return Number(value).toFixed(2).replace(".", ",");
+    return Number(value)
+        .toFixed(2)
+        .replace(".", ",");
 
 }
 
 
+/* ============================================= */
+/* PITANJA */
+/* ============================================= */
+
 function prikaziPitanja(pitanja) {
+
+    if (
+        !pitanja ||
+        pitanja.length === 0
+    ) {
+
+        document.getElementById(
+            "statistics-questions"
+        ).innerHTML =
+            "<p>Nema podataka.</p>";
+
+        return;
+
+    }
+
 
     let html =
 
-        "<table>" +
+        "<table class='statistics-table'>" +
 
         "<thead>" +
 
@@ -183,11 +322,30 @@ function prikaziPitanja(pitanja) {
 }
 
 
+/* ============================================= */
+/* IDEOLOGIJA */
+/* ============================================= */
+
 function prikaziIdeologiju(ideologija) {
+
+    if (
+        !ideologija ||
+        ideologija.length === 0
+    ) {
+
+        document.getElementById(
+            "statistics-ideology"
+        ).innerHTML =
+            "<p>Nema podataka.</p>";
+
+        return;
+
+    }
+
 
     let html =
 
-        "<table>" +
+        "<table class='statistics-table'>" +
 
         "<thead>" +
 
@@ -237,9 +395,97 @@ function prikaziIdeologiju(ideologija) {
 }
 
 
+/* ============================================= */
+/* POLITIČKE OPCIJE */
+/* ============================================= */
+
+function prikaziStranke(stranke) {
+
+    if (
+        !stranke ||
+        stranke.length === 0
+    ) {
+
+        document.getElementById(
+            "statistics-parties"
+        ).innerHTML =
+
+            "<p>" +
+            "Još nema dovoljno podataka o " +
+            "podudarnosti političkih opcija." +
+            "</p>";
+
+        return;
+
+    }
+
+
+    let html =
+
+        "<table class='statistics-table'>" +
+
+        "<thead>" +
+
+        "<tr>" +
+
+        "<th>Politička opcija</th>" +
+
+        "<th>Prosečna podudarnost</th>" +
+
+        "<th>1. mesto</th>" +
+
+        "</tr>" +
+
+        "</thead>" +
+
+        "<tbody>";
+
+
+    stranke.forEach(function(item) {
+
+        html +=
+
+            "<tr>" +
+
+            "<td>" +
+            item.name +
+            "</td>" +
+
+            "<td>" +
+            formatNumber(item.prosek) +
+            " %</td>" +
+
+            "<td>" +
+            formatNumber(item.prvoMesto) +
+            " %</td>" +
+
+            "</tr>";
+
+    });
+
+
+    html +=
+
+        "</tbody>" +
+
+        "</table>";
+
+
+    document.getElementById(
+        "statistics-parties"
+    ).innerHTML = html;
+
+}
+
+
+/* ============================================= */
+/* UČITAVANJE */
+/* ============================================= */
+
 loadStatistics();
 
 </script>
 
 </body>
+
 </html>

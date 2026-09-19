@@ -653,7 +653,7 @@ function showResults() {
         }
     );
 
-
+sendResultsToGoogleSheet(results);
     resultsDiv.innerHTML = "";
 
 
@@ -727,7 +727,112 @@ results.forEach(
     createResultNavigation();
 
 }
+// ============================================================
+// SLANJE REZULTATA U GOOGLE SHEET
+// ============================================================
 
+const GOOGLE_SHEET_URL =
+    "https://script.google.com/macros/s/AKfycbwzZpC-E2yf2NVNaq0-opshAmu3469Bf_1jhrTq8rRpUjl2Pwr2nelL6Go8VVVqRBs/exec";
+
+
+function sendResultsToGoogleSheet(results) {
+
+    try {
+
+        // Ideološka pozicija ispitanika
+        const ideology =
+            calculateUserIdeology();
+
+
+        // Podaci koji se šalju Google Sheet-u
+        const data = {
+
+            izbori:
+                currentElection,
+
+            odgovori:
+                userAnswers,
+
+            ekonomija:
+                ideology.economic,
+
+            drustveneVrednosti:
+                ideology.social,
+
+            spoljnaPolitika:
+                ideology.foreign,
+
+            globalizam:
+                ideology.global,
+
+            rezultati:
+                results.map(
+                    function(result) {
+
+                        return {
+                            name: result.name,
+                            score: result.score
+                        };
+
+                    }
+                )
+
+        };
+
+
+        console.log(
+            "ŠALJEM PODATKE U GOOGLE SHEET:",
+            data
+        );
+
+
+        fetch(
+            GOOGLE_SHEET_URL,
+            {
+                method: "POST",
+
+                mode: "no-cors",
+
+                headers: {
+                    "Content-Type":
+                        "text/plain;charset=utf-8"
+                },
+
+                body:
+                    JSON.stringify(data)
+            }
+        )
+        .then(
+            function() {
+
+                console.log(
+                    "Podaci su poslati Google Sheet-u."
+                );
+
+            }
+        )
+        .catch(
+            function(error) {
+
+                console.error(
+                    "Greška pri slanju podataka:",
+                    error
+                );
+
+            }
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Greška u sendResultsToGoogleSheet:",
+            error
+        );
+
+    }
+
+}
 
 // ============================================================
 // PONOVI TEST

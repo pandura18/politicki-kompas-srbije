@@ -281,6 +281,8 @@ function prikaziPitanja(pitanja) {
 
         "<th>Prosečan odgovor</th>" +
 
+        "<th>Ideološka pozicija</th>" +
+
         "</tr>" +
 
         "</thead>" +
@@ -298,6 +300,10 @@ function prikaziPitanja(pitanja) {
             item.pitanje +
             "</td>" +
 
+"<td>" +
+(item.opis || "-") +
+"</td>" +
+            
             "<td>" +
             formatNumber(item.prosek) +
             "</td>" +
@@ -354,6 +360,8 @@ function prikaziIdeologiju(ideologija) {
 
         "<th>Prosečna ideološka pozicija</th>" +
 
+        "<th>Ideološki opis</th>" +
+
         "</tr>" +
 
         "</thead>" +
@@ -375,6 +383,10 @@ function prikaziIdeologiju(ideologija) {
             formatNumber(item.prosek) +
             "</td>" +
 
+"<td>" +
+(item.opis || "-") +
+"</td>" +
+            
             "</tr>";
 
     });

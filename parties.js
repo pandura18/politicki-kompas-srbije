@@ -599,4 +599,16 @@ color:"#242970"
     global: 10,
     color: "#3119FF"
 },
+	{
+    name: "Evropska Srbija",
+    answers: [
+        2, 5, 4, 5, 5, 5, 5, 4, 4, 2, 5, 4, 1, 2, 5, 1, 2, 3, 1, 2, 5, 5, 1, 1, 1, 4, 1, 2, 2, 3
+    ],
+    total: -6.33,
+    economic: -5.5,
+    social: -7,
+    foreign: -10,
+    global: -3,
+    color: "#F04547"
+},
 ];

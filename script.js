@@ -22,7 +22,7 @@ let economicPriority = 10;
 let socialPriority = 10;
 let foreignPriority = 10;
 let globalPriority = 10;
-
+let plannedVote = "";
 
 // ============================================================
 // DOM ELEMENTI
@@ -352,6 +352,45 @@ function showQuestion() {
 
 function showPriorityScreen() {
 
+    var votingChoice =
+        document.getElementById("voting-choice");
+
+    if (votingChoice) {
+
+        votingChoice.innerHTML = "";
+
+        if (parties && Array.isArray(parties)) {
+
+            parties.forEach(function(party) {
+
+                var label =
+                    document.createElement("label");
+
+                label.style.display = "block";
+                label.style.marginBottom = "8px";
+
+                var radio =
+                    document.createElement("input");
+
+                radio.type = "radio";
+                radio.name = "planned-vote";
+                radio.value = party.name;
+
+                label.appendChild(radio);
+
+                label.appendChild(
+                    document.createTextNode(
+                        " " + party.name
+                    )
+                );
+
+                votingChoice.appendChild(label);
+
+            });
+
+        }
+
+    }
     showScreen(priorityScreen);
 
 }

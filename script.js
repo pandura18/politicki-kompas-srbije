@@ -862,6 +862,8 @@ function sendResultsToGoogleSheet(results) {
             globalizam:
                 ideology.global,
 
+    plannedVote:
+        plannedVote,
             rezultati:
                 results.map(
                     function(result) {

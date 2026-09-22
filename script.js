@@ -439,6 +439,20 @@ if (priorityNext) {
 
     priorityNext.onclick = function() {
 
+        // Za izbore 2026. mora biti izabrana opcija
+        if (
+            currentElection === "2026" &&
+            !plannedVote
+        ) {
+
+            alert(
+                "Molimo izaberite za koga planirate da glasate."
+            );
+
+            return;
+        }
+
+
         economicPriority =
             Number(
                 document.getElementById(
@@ -474,6 +488,11 @@ if (priorityNext) {
             socialPriority,
             foreignPriority,
             globalPriority
+        );
+
+        console.log(
+            "PLANIRANI GLAS:",
+            plannedVote
         );
 
 

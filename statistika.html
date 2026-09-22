@@ -1,171 +1,185 @@
 <!DOCTYPE html>
+
 <html lang="sr">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>
-        Statistika – Politički kompas Srbije
-    </title>
+<title>
+    Statistika – Politički kompas Srbije
+</title>
 
-    <link
-        rel="icon"
-        type="image/png"
-        href="favicon.png"
-    >
+<link
+    rel="icon"
+    type="image/png"
+    href="favicon.png"
+>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+<link
+    rel="stylesheet"
+    href="style.css"
+>
 
-    <style>
+<style>
+
+    .statistics-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    .statistics-table th,
+    .statistics-table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    .statistics-table th {
+        font-weight: bold;
+    }
+
+    .statistics-table td:nth-child(2),
+    .statistics-table td:nth-child(3) {
+        text-align: center;
+    }
+
+    .statistics-table th:nth-child(2),
+    .statistics-table th:nth-child(3) {
+        text-align: center;
+    }
+
+    @media (max-width: 700px) {
 
         .statistics-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+            font-size: 14px;
         }
 
         .statistics-table th,
         .statistics-table td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
+            padding: 7px;
         }
 
-        .statistics-table th {
-            font-weight: bold;
-        }
+    }
 
-        .statistics-table td:nth-child(2),
-        .statistics-table td:nth-child(3) {
-            text-align: center;
-        }
-
-        .statistics-table th:nth-child(2),
-        .statistics-table th:nth-child(3) {
-            text-align: center;
-        }
-
-        @media (max-width: 700px) {
-
-            .statistics-table {
-                font-size: 14px;
-            }
-
-            .statistics-table th,
-            .statistics-table td {
-                padding: 7px;
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
-
 
 <body>
 
 <header>
 
-    <h1>
-        Statistika – Politički kompas Srbije
-    </h1>
+<h1>
+    Statistika – Politički kompas Srbije
+</h1>
 
-    <p>
-        Prosečni odgovori i prosečne ideološke pozicije
-        korisnika koji su uradili Politički kompas Srbije.
-    </p>
+<p>
+    Prosečni odgovori i prosečne ideološke pozicije
+    korisnika koji su uradili Politički kompas Srbije.
+</p>
 
 </header>
 
-
 <main>
 
-    <!-- ================================================= -->
-    <!-- PROSEČNI ODGOVORI -->
-    <!-- ================================================= -->
+<!-- ================================================= -->
+<!-- PROSEČNI ODGOVORI -->
+<!-- ================================================= -->
 
-    <section class="card">
+<section class="card">
 
-        <h2>
-            Prosečan odgovor na svako pitanje
-        </h2>
+    <h2>
+        Prosečan odgovor na svako pitanje
+    </h2>
 
-        <div id="statistics-questions">
-            Učitavanje statistike...
-        </div>
+    <div id="statistics-questions">
+        Učitavanje statistike...
+    </div>
 
-    </section>
-
-
-    <!-- ================================================= -->
-    <!-- IDEOLOŠKE POZICIJE -->
-    <!-- ================================================= -->
-
-    <section class="card">
-
-        <h2>
-            Prosečne ideološke pozicije
-        </h2>
-
-        <div id="statistics-ideology">
-            Učitavanje statistike...
-        </div>
-
-    </section>
+</section>
 
 
-    <!-- ================================================= -->
-    <!-- POLITIČKE OPCIJE -->
-    <!-- ================================================= -->
+<!-- ================================================= -->
+<!-- IDEOLOŠKE POZICIJE -->
+<!-- ================================================= -->
 
-    <section class="card">
+<section class="card">
 
-        <h2>
-            Statistika političkih opcija
-        </h2>
+    <h2>
+        Prosečne ideološke pozicije
+    </h2>
 
-        <div id="statistics-parties">
-            Učitavanje statistike...
-        </div>
+    <div id="statistics-ideology">
+        Učitavanje statistike...
+    </div>
 
-    </section>
+</section>
 
 
-    <!-- ================================================= -->
-    <!-- NAZAD -->
-    <!-- ================================================= -->
+<!-- ================================================= -->
+<!-- PLANIRANI GLAS -->
+<!-- ================================================= -->
 
-    <section class="card">
+<section class="card">
 
-        <button
-            onclick="window.location.href='index.html'"
-        >
-            Nazad
-        </button>
+    <h2>
+        Za koga planiraju da glasaju
+    </h2>
 
-    </section>
+    <div id="statistics-planned-vote">
+        Učitavanje statistike...
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- POLITIČKE OPCIJE -->
+<!-- ================================================= -->
+
+<section class="card">
+
+    <h2>
+        Statistika političkih opcija
+    </h2>
+
+    <div id="statistics-parties">
+        Učitavanje statistike...
+    </div>
+
+</section>
+
+
+<!-- ================================================= -->
+<!-- NAZAD -->
+<!-- ================================================= -->
+
+<section class="card">
+
+    <button
+        onclick="window.location.href='index.html'"
+    >
+        Nazad
+    </button>
+
+</section>
 
 </main>
 
-
 <footer>
 
-    <p>
-        Politički kompas Srbije © 2026
-    </p>
+<p>
+    Politički kompas Srbije © 2026
+</p>
 
 </footer>
-
 
 <script>
 
@@ -201,6 +215,10 @@ function loadStatistics() {
                 data.ideologija
             );
 
+            prikaziPlaniraniGlas(
+                data.planiraniGlas
+            );
+
             prikaziStranke(
                 data.stranke
             );
@@ -218,6 +236,10 @@ function loadStatistics() {
 
             document.getElementById(
                 "statistics-ideology"
+            ).innerHTML = "";
+
+            document.getElementById(
+                "statistics-planned-vote"
             ).innerHTML = "";
 
             document.getElementById(
@@ -300,14 +322,14 @@ function prikaziPitanja(pitanja) {
             item.pitanje +
             "</td>" +
 
-            
             "<td>" +
             formatNumber(item.prosek) +
             "</td>" +
 
-"<td>" +
-(item.opis || "-") +
-"</td>" +
+            "<td>" +
+            (item.opis || "-") +
+            "</td>" +
+
             "</tr>";
 
     });
@@ -376,17 +398,17 @@ function prikaziIdeologiju(ideologija) {
             "<tr>" +
 
             "<td>" +
-            item.oblast +
+            (item.naziv || "-") +
             "</td>" +
 
             "<td>" +
             formatNumber(item.prosek) +
             "</td>" +
 
-"<td>" +
-(item.opis || "-") +
-"</td>" +
-            
+            "<td>" +
+            (item.opis || "-") +
+            "</td>" +
+
             "</tr>";
 
     });
@@ -404,26 +426,89 @@ function prikaziIdeologiju(ideologija) {
     ).innerHTML = html;
 
 }
-<h2>Za koga planiraju da glasaju</h2>
 
-<table class="statistics-table">
 
-    <thead>
+/* ============================================= */
+/* PLANIRANI GLAS */
+/* ============================================= */
 
-        <tr>
+function prikaziPlaniraniGlas(planiraniGlas) {
 
-            <th>Opcija</th>
-            <th>Procenat</th>
+    var container =
+        document.getElementById(
+            "statistics-planned-vote"
+        );
 
-        </tr>
 
-    </thead>
+    if (
+        !planiraniGlas ||
+        planiraniGlas.length === 0
+    ) {
 
-    <tbody id="planned-vote-statistics">
+        container.innerHTML =
+            "<p>Nema podataka o planiranom glasu.</p>";
 
-    </tbody>
+        return;
 
-</table>
+    }
+
+
+    var html =
+
+        "<table class='statistics-table'>" +
+
+        "<thead>" +
+
+        "<tr>" +
+
+        "<th>Opcija</th>" +
+
+        "<th>Broj odgovora</th>" +
+
+        "<th>Procenat</th>" +
+
+        "</tr>" +
+
+        "</thead>" +
+
+        "<tbody>";
+
+
+    planiraniGlas.forEach(function(item) {
+
+        html +=
+
+            "<tr>" +
+
+            "<td>" +
+            (item.opcija || "-") +
+            "</td>" +
+
+            "<td>" +
+            (item.broj || 0) +
+            "</td>" +
+
+            "<td>" +
+            formatNumber(item.procenat) +
+            " %" +
+            "</td>" +
+
+            "</tr>";
+
+    });
+
+
+    html +=
+
+        "</tbody>" +
+
+        "</table>";
+
+
+    container.innerHTML = html;
+
+}
+
 
 /* ============================================= */
 /* POLITIČKE OPCIJE */
@@ -435,6 +520,7 @@ function prikaziStranke(izboriPodaci) {
         document.getElementById(
             "statistics-parties"
         );
+
 
     if (
         !izboriPodaci ||
@@ -533,6 +619,7 @@ function prikaziStranke(izboriPodaci) {
     container.innerHTML = html;
 
 }
+
 
 /* ============================================= */
 /* UČITAVANJE */

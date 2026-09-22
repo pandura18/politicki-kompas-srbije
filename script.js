@@ -352,16 +352,18 @@ function showQuestion() {
 
 function showPriorityScreen() {
 
-    var votingChoice =
+     var votingChoice =
         document.getElementById("voting-choice");
 
     if (votingChoice) {
 
         votingChoice.innerHTML = "";
 
-        if (parties && Array.isArray(parties)) {
+        // Pitanje o planiranom glasu
+        // prikazuje se samo za izbore 2026.
+        if (currentElection === "2026") {
 
-            parties.forEach(function(party) {
+            parties2026.forEach(function(party) {
 
                 var label =
                     document.createElement("label");
@@ -376,6 +378,12 @@ function showPriorityScreen() {
                 radio.name = "planned-vote";
                 radio.value = party.name;
 
+                radio.onchange = function() {
+
+                    plannedVote = this.value;
+
+                };
+
                 label.appendChild(radio);
 
                 label.appendChild(
@@ -388,9 +396,40 @@ function showPriorityScreen() {
 
             });
 
+            // Korisnik može i da ne odgovori
+            var label =
+                document.createElement("label");
+
+            label.style.display = "block";
+            label.style.marginBottom = "8px";
+
+            var radio =
+                document.createElement("input");
+
+            radio.type = "radio";
+            radio.name = "planned-vote";
+            radio.value = "Ne želim da odgovorim";
+
+            radio.onchange = function() {
+
+                plannedVote = this.value;
+
+            };
+
+            label.appendChild(radio);
+
+            label.appendChild(
+                document.createTextNode(
+                    " Ne želim da odgovorim"
+                )
+            );
+
+            votingChoice.appendChild(label);
+
         }
 
     }
+
     showScreen(priorityScreen);
 
 }

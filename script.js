@@ -396,38 +396,6 @@ function showPriorityScreen() {
 
             });
 
-            parties2026.forEach(function(party) {
-
-    var label =
-        document.createElement("label");
-
-    label.style.display = "block";
-    label.style.marginBottom = "8px";
-
-    var radio =
-        document.createElement("input");
-
-    radio.type = "radio";
-    radio.name = "planned-vote";
-    radio.value = party.name;
-
-    radio.onchange = function() {
-
-        plannedVote = this.value;
-
-    };
-
-    label.appendChild(radio);
-
-    label.appendChild(
-        document.createTextNode(
-            " " + party.name
-        )
-    );
-
-    votingChoice.appendChild(label);
-
-});
         }
 
     }

@@ -369,16 +369,15 @@ function nacrtajGrafik() {
 
 
         var x =
-            left +
-            (value / 100) *
-            graphWidth;
+    left +
+    ((xValue + 10) / 20) *
+    graphWidth;
 
-
-        var y =
-            top +
-            graphHeight -
-            (value / 100) *
-            graphHeight;
+var y =
+    top +
+    graphHeight -
+    ((yValue + 10) / 20) *
+    graphHeight;
 
 
         dodajLiniju(

@@ -355,69 +355,56 @@ function nacrtajGrafik() {
 
 
     // -------------------------------------------------
-    // MREŽA
-    // -------------------------------------------------
+// MREŽA
+// -------------------------------------------------
 
-    for (
-        var i = 0;
-        i <= 4;
-        i++
-    ) {
+for (var i = 0; i <= 4; i++) {
 
-        var value =
-            i * 25;
+    var value = -10 + i * 5;
 
+    var x =
+        left +
+        ((value + 10) / 20) * graphWidth;
 
-        var x =
-    left +
-    ((xValue + 10) / 20) *
-    graphWidth;
+    var y =
+        top +
+        graphHeight -
+        ((value + 10) / 20) * graphHeight;
 
-var y =
-    top +
-    graphHeight -
-    ((yValue + 10) / 20) *
-    graphHeight;
+    dodajLiniju(
+        svg,
+        x,
+        top,
+        x,
+        top + graphHeight,
+        "#dddddd"
+    );
 
+    dodajLiniju(
+        svg,
+        left,
+        y,
+        left + graphWidth,
+        y,
+        "#dddddd"
+    );
 
-        dodajLiniju(
-            svg,
-            x,
-            top,
-            x,
-            top + graphHeight,
-            "#dddddd"
-        );
+    dodajTekst(
+        svg,
+        x,
+        top + graphHeight + 25,
+        value > 0 ? "+" + value : value,
+        "middle"
+    );
 
-
-        dodajLiniju(
-            svg,
-            left,
-            y,
-            left + graphWidth,
-            y,
-            "#dddddd"
-        );
-
-
-        dodajTekst(
-            svg,
-            x,
-            top + graphHeight + 25,
-            value,
-            "middle"
-        );
-
-
-        dodajTekst(
-            svg,
-            left - 15,
-            y + 5,
-            value,
-            "end"
-        );
-
-    }
+    dodajTekst(
+        svg,
+        left - 15,
+        y + 5,
+        value > 0 ? "+" + value : value,
+        "end"
+    );
+}
 
 
     // -------------------------------------------------

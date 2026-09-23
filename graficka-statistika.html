@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="sr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Grafička statistika – Politički kompas Srbije
+    </title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="favicon.png"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <style>
+
+        .graph-controls {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .graph-control {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .graph-control label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        .graph-control select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .graph-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        #political-graph {
+            width: 100%;
+            min-width: 650px;
+            height: 600px;
+        }
+
+        .graph-point {
+            cursor: pointer;
+        }
+
+        .graph-label {
+            font-size: 13px;
+            pointer-events: none;
+        }
+
+        .graph-note {
+            margin-top: 15px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<header>
+
+    <h1>
+        Grafička statistika
+    </h1>
+
+    <p>
+        Prosečne ideološke pozicije korisnika
+        prema političkoj opciji koju su izabrali.
+    </p>
+
+</header>
+
+
+<main>
+
+    <section class="card">
+
+        <h2>
+            Politička mapa
+        </h2>
+
+
+        <div class="graph-controls">
+
+            <div class="graph-control">
+
+                <label for="x-axis">
+                    X osa
+                </label>
+
+                <select id="x-axis">
+
+                    <option value="ekonomija">
+                        Ekonomija
+                    </option>
+
+                    <option value="drustveneVrednosti">
+                        Društvene vrednosti
+                    </option>
+
+                    <option value="spoljnaPolitika">
+                        Spoljna politika
+                    </option>
+
+                    <option value="globalizam">
+                        Globalizam
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="graph-control">
+
+                <label for="y-axis">
+                    Y osa
+                </label>
+
+                <select id="y-axis">
+
+                    <option value="drustveneVrednosti">
+                        Društvene vrednosti
+                    </option>
+
+                    <option value="ekonomija">
+                        Ekonomija
+                    </option>
+
+                    <option value="spoljnaPolitika">
+                        Spoljna politika
+                    </option>
+
+                    <option value="globalizam">
+                        Globalizam
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="graph-loading"
+        >
+            Učitavanje grafike...
+        </div>
+
+
+        <div class="graph-container">
+
+            <svg
+                id="political-graph"
+                viewBox="0 0 900 650"
+                preserveAspectRatio="xMidYMid meet"
+                style="display:none;"
+            ></svg>
+
+        </div>
+
+
+        <div
+            id="graph-note"
+            class="graph-note"
+        >
+            Koordinate predstavljaju prosečne vrednosti
+            odgovora korisnika koji su izabrali određenu
+            političku opciju. Veličina tačke je ista
+            za sve političke opcije.
+        </div>
+
+    </section>
+
+
+    <section class="card">
+
+        <button
+            onclick="window.location.href='index.html'"
+        >
+            Nazad
+        </button>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        Politički kompas Srbije © 2026
+    </p>
+
+</footer>
+
+
+<script>
+
+const GOOGLE_SHEET_URL =
+    "https://script.google.com/macros/s/AKfycbwzZpC-E2yf2NVNaq0-opshAmu3469Bf_1jhrTq8rRpUjl2Pwr2nelL6Go8VVVqRBs/exec";
+
+
+var grafickiPodaci = [];
+
+
+var naziviOsa = {
+
+    ekonomija:
+        "Ekonomija",
+
+    drustveneVrednosti:
+        "Društvene vrednosti",
+
+    spoljnaPolitika:
+        "Spoljna politika",
+
+    globalizam:
+        "Globalizam"
+
+};
+
+
+document
+    .getElementById("x-axis")
+    .addEventListener(
+        "change",
+        nacrtajGrafik
+    );
+
+
+document
+    .getElementById("y-axis")
+    .addEventListener(
+        "change",
+        nacrtajGrafik
+    );
+
+
+fetch(GOOGLE_SHEET_URL)
+
+    .then(function(response) {
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Greška pri učitavanju podataka."
+            );
+
+        }
+
+        return response.json();
+
+    })
+
+    .then(function(data) {
+
+        grafickiPodaci =
+            data.grafickaStatistika || [];
+
+        document
+            .getElementById(
+                "graph-loading"
+            )
+            .style.display = "none";
+
+        document
+            .getElementById(
+                "political-graph"
+            )
+            .style.display = "block";
+
+        nacrtajGrafik();
+
+    })
+
+    .catch(function(error) {
+
+        console.error(error);
+
+        document
+            .getElementById(
+                "graph-loading"
+            )
+            .innerHTML =
+                "Grafička statistika trenutno nije dostupna.";
+
+    });
+
+
+function nacrtajGrafik() {
+
+    var svg =
+        document.getElementById(
+            "political-graph"
+        );
+
+
+    var xKey =
+        document.getElementById(
+            "x-axis"
+        ).value;
+
+
+    var yKey =
+        document.getElementById(
+            "y-axis"
+        ).value;
+
+
+    svg.innerHTML = "";
+
+
+    var left = 90;
+    var right = 40;
+    var top = 40;
+    var bottom = 80;
+
+    var width = 900;
+    var height = 650;
+
+    var graphWidth =
+        width - left - right;
+
+    var graphHeight =
+        height - top - bottom;
+
+
+    // -------------------------------------------------
+    // MREŽA
+    // -------------------------------------------------
+
+    for (
+        var i = 0;
+        i <= 4;
+        i++
+    ) {
+
+        var value =
+            i * 25;
+
+
+        var x =
+            left +
+            (value / 100) *
+            graphWidth;
+
+
+        var y =
+            top +
+            graphHeight -
+            (value / 100) *
+            graphHeight;
+
+
+        dodajLiniju(
+            svg,
+            x,
+            top,
+            x,
+            top + graphHeight,
+            "#dddddd"
+        );
+
+
+        dodajLiniju(
+            svg,
+            left,
+            y,
+            left + graphWidth,
+            y,
+            "#dddddd"
+        );
+
+
+        dodajTekst(
+            svg,
+            x,
+            top + graphHeight + 25,
+            value,
+            "middle"
+        );
+
+
+        dodajTekst(
+            svg,
+            left - 15,
+            y + 5,
+            value,
+            "end"
+        );
+
+    }
+
+
+    // -------------------------------------------------
+    // OSE
+    // -------------------------------------------------
+
+    dodajLiniju(
+        svg,
+        left,
+        top + graphHeight,
+        left + graphWidth,
+        top + graphHeight,
+        "#333333"
+    );
+
+
+    dodajLiniju(
+        svg,
+        left,
+        top,
+        left,
+        top + graphHeight,
+        "#333333"
+    );
+
+
+    // -------------------------------------------------
+    // NAZIVI OSA
+    // -------------------------------------------------
+
+    dodajTekst(
+        svg,
+        left + graphWidth / 2,
+        height - 20,
+        naziviOsa[xKey],
+        "middle",
+        true
+    );
+
+
+    var yText =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text"
+        );
+
+    yText.setAttribute(
+        "x",
+        20
+    );
+
+    yText.setAttribute(
+        "y",
+        top + graphHeight / 2
+    );
+
+    yText.setAttribute(
+        "text-anchor",
+        "middle"
+    );
+
+    yText.setAttribute(
+        "transform",
+        "rotate(-90 20 " +
+        (top + graphHeight / 2) +
+        ")"
+    );
+
+    yText.textContent =
+        naziviOsa[yKey];
+
+    svg.appendChild(yText);
+
+
+    // -------------------------------------------------
+    // TAČKE
+    // -------------------------------------------------
+
+    grafickiPodaci.forEach(
+        function(item, index) {
+
+            var xValue =
+                Number(item[xKey]);
+
+            var yValue =
+                Number(item[yKey]);
+
+
+            if (
+                isNaN(xValue) ||
+                isNaN(yValue)
+            ) {
+
+                return;
+
+            }
+
+
+            var x =
+                left +
+                (xValue / 100) *
+                graphWidth;
+
+
+            var y =
+                top +
+                graphHeight -
+                (yValue / 100) *
+                graphHeight;
+
+
+            var circle =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "circle"
+                );
+
+
+            circle.setAttribute(
+                "cx",
+                x
+            );
+
+            circle.setAttribute(
+                "cy",
+                y
+            );
+
+            // SVE TAČKE ISTE VELIČINE
+            circle.setAttribute(
+                "r",
+                8
+            );
+
+
+            circle.setAttribute(
+                "fill",
+                bojaTacke(index)
+            );
+
+
+            circle.setAttribute(
+                "class",
+                "graph-point"
+            );
+
+
+            var title =
+                document.createElementNS(
+                    "http://www.w3.org/2000/svg",
+                    "title"
+                );
+
+
+            title.textContent =
+                item.name +
+                " — " +
+                naziviOsa[xKey] +
+                ": " +
+                xValue +
+                ", " +
+                naziviOsa[yKey] +
+                ": " +
+                yValue;
+
+
+            circle.appendChild(title);
+
+
+            svg.appendChild(circle);
+
+
+            // -------------------------------------------------
+            // NAZIV POLITIČKE OPCIJE
+            // -------------------------------------------------
+
+            dodajTekst(
+                svg,
+                x + 12,
+                y - 10,
+                item.name,
+                "start"
+            );
+
+        }
+    );
+
+}
+
+
+function dodajLiniju(
+    svg,
+    x1,
+    y1,
+    x2,
+    y2,
+    stroke
+) {
+
+    var line =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "line"
+        );
+
+
+    line.setAttribute(
+        "x1",
+        x1
+    );
+
+    line.setAttribute(
+        "y1",
+        y1
+    );
+
+    line.setAttribute(
+        "x2",
+        x2
+    );
+
+    line.setAttribute(
+        "y2",
+        y2
+    );
+
+    line.setAttribute(
+        "stroke",
+        stroke
+    );
+
+
+    svg.appendChild(line);
+
+}
+
+
+function dodajTekst(
+    svg,
+    x,
+    y,
+    tekst,
+    anchor,
+    bold
+) {
+
+    var text =
+        document.createElementNS(
+            "http://www.w3.org/2000/svg",
+            "text"
+        );
+
+
+    text.setAttribute(
+        "x",
+        x
+    );
+
+    text.setAttribute(
+        "y",
+        y
+    );
+
+    text.setAttribute(
+        "text-anchor",
+        anchor || "start"
+    );
+
+
+    if (bold) {
+
+        text.setAttribute(
+            "font-weight",
+            "bold"
+        );
+
+    }
+
+
+    text.textContent =
+        tekst;
+
+
+    svg.appendChild(text);
+
+}
+
+
+function bojaTacke(index) {
+
+    var boje = [
+        "#2563eb",
+        "#dc2626",
+        "#16a34a",
+        "#f59e0b",
+        "#7c3aed",
+        "#0891b2",
+        "#db2777",
+        "#475569",
+        "#ea580c",
+        "#059669"
+    ];
+
+
+    return boje[
+        index % boje.length
+    ];
+
+}
+
+</script>
+
+</body>
+
+</html>

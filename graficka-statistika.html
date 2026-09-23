@@ -406,7 +406,6 @@ for (var i = 0; i <= 4; i++) {
     );
 }
 
-
     // -------------------------------------------------
     // OSE
     // -------------------------------------------------
@@ -502,18 +501,14 @@ for (var i = 0; i <= 4; i++) {
 
             }
 
+var x =
+    left +
+    ((xValue + 10) / 20) * graphWidth;
 
-            var x =
-                left +
-                (xValue / 100) *
-                graphWidth;
-
-
-            var y =
-                top +
-                graphHeight -
-                (yValue / 100) *
-                graphHeight;
+var y =
+    top +
+    graphHeight -
+    ((yValue + 10) / 20) * graphHeight;
 
 
             var circle =

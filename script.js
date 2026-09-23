@@ -396,36 +396,38 @@ function showPriorityScreen() {
 
             });
 
-            // Korisnik može i da ne odgovori
-            var label =
-                document.createElement("label");
+            parties2026.forEach(function(party) {
 
-            label.style.display = "block";
-            label.style.marginBottom = "8px";
+    var label =
+        document.createElement("label");
 
-            var radio =
-                document.createElement("input");
+    label.style.display = "block";
+    label.style.marginBottom = "8px";
 
-            radio.type = "radio";
-            radio.name = "planned-vote";
-            radio.value = "Ne želim da odgovorim";
+    var radio =
+        document.createElement("input");
 
-            radio.onchange = function() {
+    radio.type = "radio";
+    radio.name = "planned-vote";
+    radio.value = party.name;
 
-                plannedVote = this.value;
+    radio.onchange = function() {
 
-            };
+        plannedVote = this.value;
 
-            label.appendChild(radio);
+    };
 
-            label.appendChild(
-                document.createTextNode(
-                    " Ne želim da odgovorim"
-                )
-            );
+    label.appendChild(radio);
 
-            votingChoice.appendChild(label);
+    label.appendChild(
+        document.createTextNode(
+            " " + party.name
+        )
+    );
 
+    votingChoice.appendChild(label);
+
+});
         }
 
     }

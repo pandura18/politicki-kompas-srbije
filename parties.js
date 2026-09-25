@@ -611,4 +611,40 @@ color:"#242970"
     global: -3,
     color: "#F04547"
 },
+	{
+    name: "Pokret snaga Srbije",
+    answers: [
+        5, 3, 4, 2, 5, 3, 2, 4, 2, 3, 1, 1, 4, 4, 4, 5, 3, 3, 3, 3, 4, 4, 3, 2, 3, 4, 4, 4, 5, 4
+    ],
+    total: 2,
+    economic: 1.5,
+    social: 3.5,
+    foreign: -3,
+    global: 6,
+    color: "#F9A825"
+},
+	{
+    name: "Alternativa za Srbiju",
+    answers: [
+        4, 5, 3, 2, 5, 5, 4, 4, 3, 3, 2, 2, 4, 5, 5, 4, 4, 5, 5, 3, 3, 1, 5, 5, 5, 5, 5, 5, 5, 5
+    ],
+    total: 3.83,
+    economic: -2,
+    social: 4.5,
+    foreign: 8,
+    global: 10,
+    color: "#616161"
+},
+	{
+    name: "Ćale, ovo je za tebe",
+    answers: [
+        3, 5, 3, 4, 4, 5, 4, 5, 4, 3, 4, 4, 3, 4, 5, 1, 2, 4, 2, 1, 4, 3, 3, 2, 3, 4, 2, 4, 4, 3
+    ],
+    total: -2.33,
+    economic: -3,
+    social: -4,
+    foreign: -2,
+    global: 2,
+    color: "#F28300"
+},
 ];

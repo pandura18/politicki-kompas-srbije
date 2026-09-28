@@ -792,6 +792,89 @@ results.forEach(
 
 
     createResultNavigation();
+// =============================================
+// DUGME ZA DELJENJE REZULTATA
+// =============================================
+
+const shareButton =
+    document.createElement("button");
+
+shareButton.textContent =
+    "Podeli rezultat";
+
+shareButton.className =
+    "share-result-button";
+
+shareButton.onclick =
+    function() {
+
+        shareResults(results);
+
+    };
+
+resultsDiv.appendChild(
+    shareButton
+);
+}
+function shareResults(results) {
+
+    if (!results || results.length === 0) {
+        return;
+    }
+
+    const topResult = results[0];
+
+    const shareText =
+        "🧭 Moj rezultat na Političkom kompasu Srbije\n\n" +
+        "Najveća podudarnost: " +
+        topResult.name +
+        " – " +
+        topResult.score +
+        "%\n\n" +
+        "Uradi test i vidi svoj rezultat:\n" +
+        "https://politicki-kompas-srbije.rs/";
+
+    // Ako uređaj podržava nativno deljenje
+    if (navigator.share) {
+
+        navigator.share({
+
+            title:
+                "Moj rezultat – Politički kompas Srbije",
+
+            text:
+                shareText
+
+        }).catch(function(error) {
+
+            console.log(
+                "Deljenje otkazano:",
+                error
+            );
+
+        });
+
+        return;
+    }
+
+
+    // Ako nema nativnog deljenja,
+    // kopiraj tekst u clipboard
+    navigator.clipboard.writeText(
+        shareText
+    ).then(function() {
+
+        alert(
+            "Rezultat je kopiran. Sada ga možete poslati prijateljima."
+        );
+
+    }).catch(function() {
+
+        alert(
+            shareText
+        );
+
+    });
 
 }
 // ============================================================

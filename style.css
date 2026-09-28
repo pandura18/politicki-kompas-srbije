@@ -592,3 +592,13 @@ canvas{
     font-weight: bold;
     margin-top: 8px;
 }
+.share-result-button {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 25px auto;
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}

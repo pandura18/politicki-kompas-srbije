@@ -809,7 +809,8 @@ function showResults() {
 
     continueButton.textContent =
         "Nastavi na rezultate";
-
+continueButton.type =
+    "button";
     continueButton.className =
         "continue-results-button";
 

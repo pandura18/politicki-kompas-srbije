@@ -650,169 +650,499 @@ function calculateWeightedScore(party) {
 
 function showResults() {
 
-    console.log("PRIKAZ REZULTATA");
+       console.log("PRIKAZ REZULTATA");
+    console.log("PRIPREMA REZULTATA");
+
 
     showScreen(resultScreen);
-
     const results = [];
 
-    parties.forEach(function(party) {
 
-        const score =
-            calculateWeightedScore(party);
+    const messages =
+        document.getElementById(
+            "election-messages"
+        );
+    // =============================================
+    // IZRAČUNAVANJE REZULTATA
+    // =============================================
 
-        results.push({
-            name: party.name,
-            score: score
-        });
+    parties.forEach(
+        function(party) {
 
-    });
+    if (messages) {
+            results.push({
 
+        if (
+            currentElection ===
+            "2023-coalitions"
+        ) {
+                name: party.name,
 
-    // Sortiranje od najvećeg ka najmanjem
-    results.sort(function(a, b) {
+            messages.classList.remove(
+                "hidden"
+            );
+                score:
+                    calculateWeightedScore(
+                        party
+                    )
 
-        return b.score - a.score;
+        } else {
+            });
 
-    });
-
-
-    console.log(
-        "IZRAČUNATI REZULTATI:",
-        results
+            messages.classList.add(
+                "hidden"
+            );
+        }
     );
 
 
-    displayPartyResults(results);
+    results.sort(
+        function(a, b) {
 
-}
+            return b.score - a.score;
 
-
-// ============================================================
-// PRIKAZ REZULTATA STRANAKA
-// ============================================================
-
-function displayPartyResults(results) {
-
-    console.log(
-        "PRIKAZUJEM REZULTATE STRANAKA:",
-        results
+        }
     );
 
+    }
 
-    showScreen(resultScreen);
-
-
-    resultsDiv.innerHTML = "";
-
-
-    // =====================================
-    // PRIKAZ STRANAKA
-    // =====================================
-
-    results.forEach(function(result) {
-
-        const resultCard =
-            document.createElement("div");
-
-        resultCard.className =
-            "result-card";
-
-
-        const name =
-            document.createElement("h3");
-
-        name.textContent =
-            result.name;
-
-
-        const score =
-            document.createElement("p");
-
-        score.textContent =
-            result.score.toFixed(2) + "%";
-
-
-        resultCard.appendChild(name);
-
-        resultCard.appendChild(score);
-
-        resultsDiv.appendChild(resultCard);
-
-    });
-
-
-    console.log(
-        "STRANKE PRIKAZANE:",
-        resultsDiv.children.length
-    );
-
-
-    // =====================================
-    // NAVIGACIJA REZULTATA
-    // =====================================
-
-    createResultNavigation();
-
-
-    // =====================================
-    // DUGME ZA DELJENJE
-    // =====================================
-
-    const shareButton =
-        document.createElement("button");
-
-
-    shareButton.textContent =
-        "Podeli rezultat";
-
-
-    shareButton.className =
-        "share-result-button";
-
-
-    shareButton.onclick =
-        function() {
-
-            shareResults(results);
-
-        };
-
-
-    resultsDiv.appendChild(
-        shareButton
-    );
-
-
-    // =====================================
-    // SLANJE U GOOGLE SHEETS
-    // =====================================
-
-    sendResultsToGoogleSheet(
-        results
-    );
-
-
-    // =====================================
-    // PROGRESS BAR
-    // =====================================
+    // =============================================
+    // ZAŠTITA OD PRIKAZIVANJA REZULTATA
+    // =============================================
 
     if (progressBar) {
+    // Još NE prikazujemo resultScreen.
+    // Prvo korisnik mora odgovoriti na pitanje.
 
         progressBar.style.width =
             "100%";
 
     }
+    const followUpDiv =
+        document.createElement("div");
 
-}
+    followUpDiv.className =
+        "follow-up-question";
 
+    const results = [];
+
+    const followUpTitle =
+        document.createElement("h3");
+
+    parties.forEach(
+        function(party) {
+    followUpTitle.textContent =
+        "Da li ćete glasati za opciju koju ste prvobitno izabrali ili za opciju sa kojom se najviše podudarate na testu?";
+
+            results.push({
+
+                name: party.name,
+    followUpDiv.appendChild(
+        followUpTitle
+    );
+
+                score:
+                    calculateWeightedScore(
+                        party
+                    )
+
+            });
+    // =============================================
+    // PRVA OPCIJA
+    // =============================================
+
+        }
+    const option1Label =
+        document.createElement("label");
+
+    option1Label.style.display =
+        "block";
+
+    option1Label.style.marginBottom =
+        "8px";
+
+
+    const option1 =
+        document.createElement("input");
+
+    option1.type =
+        "radio";
+
+    option1.name =
+        "vote-after-test";
+
+    option1.value =
+        "prvobitni-izbor";
+
+
+    option1Label.appendChild(
+        option1
+    );
+
+    option1Label.appendChild(
+        document.createTextNode(
+            " Za prvobitno izabranu opciju"
+        )
+    );
+
+    results.sort(
+        function(a, b) {
+
+            return b.score - a.score;
+    followUpDiv.appendChild(
+        option1Label
+    );
+
+        }
+
+    // =============================================
+    // DRUGA OPCIJA
+    // =============================================
+
+    const option2Label =
+        document.createElement("label");
+
+    option2Label.style.display =
+        "block";
+
+    option2Label.style.marginBottom =
+        "8px";
+
+
+    const option2 =
+        document.createElement("input");
+
+    option2.type =
+        "radio";
+
+    option2.name =
+        "vote-after-test";
+
+    option2.value =
+        "najvece-podudaranje";
+
+
+    option2Label.appendChild(
+        option2
+    );
+
+    option2Label.appendChild(
+        document.createTextNode(
+            " Za opciju sa najvećim podudaranjem"
+        )
+    );
+
+    resultsDiv.innerHTML = "";
+
+    followUpDiv.appendChild(
+        option2Label
+    );
+
+results.forEach(
+    function(result, index) {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+    // =============================================
+    // DUGME ZA NASTAVAK
+    // =============================================
+
+        div.className =
+            "result-card";
+    const continueButton =
+        document.createElement("button");
+
+        let recommendation = "";
+    continueButton.textContent =
+        "Nastavi na rezultate";
+
+        if (result.score > 70) {
+    continueButton.className =
+        "continue-results-button";
+
+            div.classList.add(
+                "recommended"
+            );
+    continueButton.style.marginTop =
+        "15px";
+
+            recommendation =
+                "Veoma velika preporuka";
+
+        } else if (result.score >= 50) {
+    continueButton.onclick =
+        function() {
+
+            div.classList.add(
+                "moderate"
+            );
+            // Mora prvo da izabere opciju
+            if (!voteAfterTest) {
+
+            recommendation =
+                "Dobra opcija";
+                alert(
+                    "Molimo vas da izaberete jednu od ponuđenih opcija."
+                );
+
+        } else {
+                return;
+
+            div.classList.add(
+                "not-recommended"
+            }
+
+
+            console.log(
+                "GLAS POSLE TESTA:",
+                voteAfterTest
+            );
+
+            recommendation =
+                "Ne preporučuje se glasanje za njih";
+        }
+
+        div.innerHTML =
+            // =====================================
+            // TEK SADA PRIKAZUJEMO REZULTATE
+            // =====================================
+
+            "<h3>" +
+            (index + 1) +
+            ". " +
+            result.name +
+            "</h3>" +
+            showScreen(resultScreen);
+
+            "<p>" +
+            "Podudarnost: " +
+            result.score +
+            "%" +
+            "</p>" +
+
+            "<p class=\"recommendation\">" +
+            recommendation +
+            "</p>";
+            const messages =
+                document.getElementById(
+                    "election-messages"
+                );
+
+        resultsDiv.appendChild(
+            div
+        );
+
+    }
+);
+            if (messages) {
+
+                if (
+                    currentElection ===
+                    "2023-coalitions"
+                ) {
+
+    createResultNavigation();
+// =============================================
+// DUGME ZA DELJENJE REZULTATA
+// =============================================
+                    messages.classList.remove(
+                        "hidden"
+                    );
+
+const shareButton =
+    document.createElement("button");
+                } else {
+
+shareButton.textContent =
+    "Podeli rezultat";
+                    messages.classList.add(
+                        "hidden"
+                    );
+
+shareButton.className =
+    "share-result-button";
+                }
+
+shareButton.onclick =
+    function() {
+            }
+
+        shareResults(results);
+
+    };
+            if (progressBar) {
+
+resultsDiv.appendChild(
+    shareButton
+);
+    // =============================================
+// PITANJE NAKON TESTA
+// =============================================
+                progressBar.style.width =
+                    "100%";
+
+const followUpDiv =
+    document.createElement("div");
+            }
+
+followUpDiv.className =
+    "follow-up-question";
+
+            // =====================================
+            // PRIKAZ REZULTATA
+            // =====================================
+
+const followUpTitle =
+    document.createElement("h3");
+            resultsDiv.innerHTML = "";
+
+followUpTitle.textContent =
+    "Da li ćete glasati za opciju koju ste prvobitno izabrali ili za opciju sa kojom se najviše podudarate na testu?";
+
+followUpDiv.appendChild(
+    followUpTitle
+);
+            results.forEach(
+                function(result, index) {
+
+                    const div =
+                        document.createElement(
+                            "div"
+                        );
+
+// ---------------------------------------------
+// PRVA OPCIJA
+// ---------------------------------------------
+                    div.className =
+                        "result-card";
+
+const option1Label =
+    document.createElement("label");
+
+option1Label.style.display =
+    "block";
+                    let recommendation = "";
+
+option1Label.style.marginBottom =
+    "8px";
+
+                    if (result.score > 70) {
+
+const option1 =
+    document.createElement("input");
+                        div.classList.add(
+                            "recommended"
+                        );
+
+option1.type =
+    "radio";
+                        recommendation =
+                            "Veoma velika preporuka";
+
+option1.name =
+    "vote-after-test";
+                    } else if (
+                        result.score >= 50
+                    ) {
+
+option1.value =
+    "prvobitni-izbor";
+option1.onchange = function() {
+                        div.classList.add(
+                            "moderate"
+                        );
+
+    voteAfterTest = this.value;
+                        recommendation =
+                            "Dobra opcija";
+
+    console.log(
+        "GLAS POSLE TESTA:",
+        voteAfterTest
+    );
+sendResultsToGoogleSheet(results);
+};
+                    } else {
+
+option1Label.appendChild(
+    option1
+);
+                        div.classList.add(
+                            "not-recommended"
+                        );
+
+option1Label.appendChild(
+    document.createTextNode(
+        " Za prvobitno izabranu opciju"
+    )
+);
+                        recommendation =
+                            "Ne preporučuje se glasanje za njih";
+
+                    }
+
+followUpDiv.appendChild(
+    option1Label
+);
+
+                    div.innerHTML =
+
+// ---------------------------------------------
+// DRUGA OPCIJA
+// ---------------------------------------------
+                        "<h3>" +
+                        (index + 1) +
+                        ". " +
+                        result.name +
+                        "</h3>" +
+
+const option2Label =
+    document.createElement("label");
+                        "<p>" +
+                        "Podudarnost: " +
+                        result.score +
+                        "%" +
+                        "</p>" +
+
+option2Label.style.display =
+    "block";
+                        "<p class=\"recommendation\">" +
+                        recommendation +
+                        "</p>";
+
+option2Label.style.marginBottom =
+    "8px";
+
+                    resultsDiv.appendChild(
+                        div
+                    );
+
+const option2 =
+    document.createElement("input");
+                }
+            );
+
+option2.type =
+    "radio";
+
+option2.name =
+    "vote-after-test";
             // =====================================
             // NAVIGACIJA REZULTATA
             // =====================================
 
+option2.value =
+    "najvece-podudaranje";
+option2.onchange = function() {
             createResultNavigation();
 
+    voteAfterTest = this.value;
 
+    console.log(
+        "GLAS POSLE TESTA:",
+        voteAfterTest
             // =====================================
             // DUGME ZA DELJENJE
             // =====================================
@@ -850,20 +1180,38 @@ function displayPartyResults(results) {
                 results
             );
 
+        };
 
 
     followUpDiv.appendChild(
         continueButton
     );
+sendResultsToGoogleSheet(results);
+};
 
+option2Label.appendChild(
+    option2
+);
 
+option2Label.appendChild(
+    document.createTextNode(
+        " Za opciju sa najvećim podudaranjem"
+    )
+);
     // =============================================
     // PRIKAZ PITANJA PRE REZULTATA
     // =============================================
 
     showScreen(resultScreen);
 
+followUpDiv.appendChild(
+    option2Label
+);
 
+// Dodavanje pitanja na stranicu
+resultsDiv.appendChild(
+    followUpDiv
+);
     resultsDiv.innerHTML = "";
 
     resultsDiv.appendChild(
@@ -877,66 +1225,6 @@ function displayPartyResults(results) {
             "100%";
 
     }
-
-function shareResults(results) {
-
-    if (!results || results.length === 0) {
-        return;
-    }
-
-    const topResult = results[0];
-
-    const shareText =
-        "🧭 Moj rezultat na Političkom kompasu Srbije\n\n" +
-        "Najveća podudarnost: " +
-        topResult.name +
-        " – " +
-        topResult.score +
-        "%\n\n" +
-        "Uradi test i vidi svoj rezultat:\n" +
-        "https://politicki-kompas-srbije.rs/";
-
-    // Ako uređaj podržava nativno deljenje
-    if (navigator.share) {
-
-        navigator.share({
-
-            title:
-                "Moj rezultat – Politički kompas Srbije",
-
-            text:
-                shareText
-
-        }).catch(function(error) {
-
-            console.log(
-                "Deljenje otkazano:",
-                error
-            );
-
-        });
-
-        return;
-    }
-
-
-    // Ako nema nativnog deljenja,
-    // kopiraj tekst u clipboard
-    navigator.clipboard.writeText(
-        shareText
-    ).then(function() {
-
-        alert(
-            "Rezultat je kopiran. Sada ga možete poslati prijateljima."
-        );
-
-    }).catch(function() {
-
-        alert(
-            shareText
-        );
-
-    });
 
 }
 // ============================================================

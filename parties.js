@@ -647,4 +647,16 @@ color:"#242970"
     global: 2,
     color: "#F28300"
 },
+		{
+    name: "Liberalno zelena stranka",
+    answers: [
+		4, 4, 3, 5, 3, 5, 4, 5, 2, 3, 5, 5, 1, 2, 5, 1, 3, 4, 1, 2, 4, 5, 2, 1, 1, 4, 1, 4, 2, 3
+    ],
+    total: -4,
+    economic: -1,
+    social: -6.5,
+    foreign: -8,
+    global: -1,
+    color: "#75F94D"
+},
 ];

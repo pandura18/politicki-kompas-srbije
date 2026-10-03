@@ -673,7 +673,7 @@ function showResults() {
             results.push({
 
         if (
-            currentElection ===
+            currentElection =
             "2023-coalitions"
         ) {
                 name: party.name,

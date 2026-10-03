@@ -688,9 +688,7 @@ function showResults() {
 
         } 
 
-            messages.classList.add(
-                "hidden"
-            );
+
         }
     );
 

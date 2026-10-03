@@ -815,6 +815,118 @@ shareButton.onclick =
 resultsDiv.appendChild(
     shareButton
 );
+    // =============================================
+// PITANJE NAKON TESTA
+// =============================================
+
+const followUpDiv =
+    document.createElement("div");
+
+followUpDiv.className =
+    "follow-up-question";
+
+
+const followUpTitle =
+    document.createElement("h3");
+
+followUpTitle.textContent =
+    "Da li ćete glasati za opciju koju ste prvobitno izabrali ili za opciju sa kojom se najviše podudarate na testu?";
+
+followUpDiv.appendChild(
+    followUpTitle
+);
+
+
+// ---------------------------------------------
+// PRVA OPCIJA
+// ---------------------------------------------
+
+const option1Label =
+    document.createElement("label");
+
+option1Label.style.display =
+    "block";
+
+option1Label.style.marginBottom =
+    "8px";
+
+
+const option1 =
+    document.createElement("input");
+
+option1.type =
+    "radio";
+
+option1.name =
+    "vote-after-test";
+
+option1.value =
+    "prvobitni-izbor";
+
+
+option1Label.appendChild(
+    option1
+);
+
+option1Label.appendChild(
+    document.createTextNode(
+        " Za prvobitno izabranu opciju"
+    )
+);
+
+
+followUpDiv.appendChild(
+    option1Label
+);
+
+
+// ---------------------------------------------
+// DRUGA OPCIJA
+// ---------------------------------------------
+
+const option2Label =
+    document.createElement("label");
+
+option2Label.style.display =
+    "block";
+
+option2Label.style.marginBottom =
+    "8px";
+
+
+const option2 =
+    document.createElement("input");
+
+option2.type =
+    "radio";
+
+option2.name =
+    "vote-after-test";
+
+option2.value =
+    "najvece-podudaranje";
+
+
+option2Label.appendChild(
+    option2
+);
+
+option2Label.appendChild(
+    document.createTextNode(
+        " Za opciju sa najvećim podudaranjem"
+    )
+);
+
+
+followUpDiv.appendChild(
+    option2Label
+);
+
+// Dodavanje pitanja na stranicu
+resultsDiv.appendChild(
+    followUpDiv
+);
+}
 }
 function shareResults(results) {
 

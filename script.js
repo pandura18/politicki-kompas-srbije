@@ -721,7 +721,7 @@ function showResults() {
         }
     );
 
-sendResultsToGoogleSheet(results);
+
     resultsDiv.innerHTML = "";
 
 
@@ -871,7 +871,7 @@ option1.onchange = function() {
         "GLAS POSLE TESTA:",
         voteAfterTest
     );
-
+sendResultsToGoogleSheet(results);
 };
 
 option1Label.appendChild(
@@ -923,7 +923,7 @@ option2.onchange = function() {
         "GLAS POSLE TESTA:",
         voteAfterTest
     );
-
+sendResultsToGoogleSheet(results);
 };
 
 option2Label.appendChild(

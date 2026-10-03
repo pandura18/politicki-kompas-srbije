@@ -650,7 +650,9 @@ function calculateWeightedScore(party) {
 
 function showResults() {
 
-    console.log("SHOW RESULTS - PRIPREMA");
+    console.log("PRIKAZ REZULTATA");
+
+    showScreen(resultScreen);
 
     const results = [];
 
@@ -666,130 +668,30 @@ function showResults() {
 
     });
 
+
+    // Sortiranje od najvećeg ka najmanjem
     results.sort(function(a, b) {
+
         return b.score - a.score;
+
     });
+
 
     console.log(
         "IZRAČUNATI REZULTATI:",
         results
     );
 
-    showScreen(resultScreen);
 
-    resultsDiv.innerHTML = "";
-
-    const question =
-        document.createElement("h2");
-
-    question.textContent =
-        "Kako ćete postupiti?";
-
-    resultsDiv.appendChild(question);
-
-
-    // OPCIJA 1
-    const option1 =
-        document.createElement("label");
-
-    option1.style.display = "block";
-    option1.style.margin = "15px 0";
-
-    const radio1 =
-        document.createElement("input");
-
-    radio1.type = "radio";
-    radio1.name = "vote-after-test";
-    radio1.value = "planned";
-
-    option1.appendChild(radio1);
-
-    option1.appendChild(
-        document.createTextNode(
-            " Glasaću za opciju koju sam prvobitno izabrao/la"
-        )
-    );
-
-    resultsDiv.appendChild(option1);
-
-
-    // OPCIJA 2
-    const option2 =
-        document.createElement("label");
-
-    option2.style.display = "block";
-    option2.style.margin = "15px 0";
-
-    const radio2 =
-        document.createElement("input");
-
-    radio2.type = "radio";
-    radio2.name = "vote-after-test";
-    radio2.value = "test-result";
-
-    option2.appendChild(radio2);
-
-    option2.appendChild(
-        document.createTextNode(
-            " Glasaću za opciju sa kojom imam najveću podudarnost na testu"
-        )
-    );
-
-    resultsDiv.appendChild(option2);
-
-
-    // DUGME
-    const continueButton =
-        document.createElement("button");
-
-    continueButton.type = "button";
-
-    continueButton.textContent =
-        "Nastavi na rezultate";
-
-    continueButton.style.marginTop =
-        "20px";
-
-
-    continueButton.onclick =
-        function(event) {
-
-            event.preventDefault();
-
-            const selected =
-                document.querySelector(
-                    'input[name="vote-after-test"]:checked'
-                );
-
-            if (!selected) {
-
-                alert(
-                    "Molimo izaberite jednu od opcija."
-                );
-
-                return;
-            }
-
-            voteAfterTest =
-                selected.value;
-
-            console.log(
-                "GLAS POSLE TESTA:",
-                voteAfterTest
-            );
-
-            displayPartyResults(
-                results
-            );
-
-        };
-
-
-    resultsDiv.appendChild(
-        continueButton
-    );
+    displayPartyResults(results);
 
 }
+
+
+// ============================================================
+// PRIKAZ REZULTATA STRANAKA
+// ============================================================
+
 function displayPartyResults(results) {
 
     console.log(
@@ -797,10 +699,16 @@ function displayPartyResults(results) {
         results
     );
 
+
     showScreen(resultScreen);
+
 
     resultsDiv.innerHTML = "";
 
+
+    // =====================================
+    // PRIKAZ STRANAKA
+    // =====================================
 
     results.forEach(function(result) {
 
@@ -840,16 +748,24 @@ function displayPartyResults(results) {
     );
 
 
-    // Navigacija
+    // =====================================
+    // NAVIGACIJA REZULTATA
+    // =====================================
+
     createResultNavigation();
 
 
-    // Dugme za deljenje
+    // =====================================
+    // DUGME ZA DELJENJE
+    // =====================================
+
     const shareButton =
         document.createElement("button");
 
+
     shareButton.textContent =
         "Podeli rezultat";
+
 
     shareButton.className =
         "share-result-button";
@@ -868,12 +784,28 @@ function displayPartyResults(results) {
     );
 
 
-    // Slanje u Google Sheets
+    // =====================================
+    // SLANJE U GOOGLE SHEETS
+    // =====================================
+
     sendResultsToGoogleSheet(
         results
     );
 
+
+    // =====================================
+    // PROGRESS BAR
+    // =====================================
+
+    if (progressBar) {
+
+        progressBar.style.width =
+            "100%";
+
+    }
+
 }
+
             // =====================================
             // NAVIGACIJA REZULTATA
             // =====================================

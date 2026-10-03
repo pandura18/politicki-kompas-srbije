@@ -23,6 +23,7 @@ let socialPriority = 10;
 let foreignPriority = 10;
 let globalPriority = 10;
 let plannedVote = "";
+let voteAfterTest = "";
 
 // ============================================================
 // DOM ELEMENTI
@@ -862,7 +863,16 @@ option1.name =
 
 option1.value =
     "prvobitni-izbor";
+option1.onchange = function() {
 
+    voteAfterTest = this.value;
+
+    console.log(
+        "GLAS POSLE TESTA:",
+        voteAfterTest
+    );
+
+};
 
 option1Label.appendChild(
     option1
@@ -905,7 +915,16 @@ option2.name =
 
 option2.value =
     "najvece-podudaranje";
+option2.onchange = function() {
 
+    voteAfterTest = this.value;
+
+    console.log(
+        "GLAS POSLE TESTA:",
+        voteAfterTest
+    );
+
+};
 
 option2Label.appendChild(
     option2
@@ -1028,6 +1047,8 @@ function sendResultsToGoogleSheet(results) {
 
     plannedVote:
         plannedVote,
+            voteAfterTest:
+    voteAfterTest,
             rezultati:
                 results.map(
                     function(result) {

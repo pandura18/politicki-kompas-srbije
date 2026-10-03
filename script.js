@@ -650,580 +650,239 @@ function calculateWeightedScore(party) {
 
 function showResults() {
 
-       console.log("PRIKAZ REZULTATA");
+    console.log("PRIKAZ REZULTATA");
     console.log("PRIPREMA REZULTATA");
 
 
-    showScreen(resultScreen);
+    // =============================================
+    // IZRAČUNAVANJE REZULTATA
+    // =============================================
+
     const results = [];
 
+
+    parties.forEach(function(party) {
+
+        results.push({
+
+            name: party.name,
+
+            score:
+                calculateWeightedScore(party)
+
+        });
+
+    });
+
+
+    // =============================================
+    // SORTIRANJE
+    // =============================================
+
+    results.sort(function(a, b) {
+
+        return b.score - a.score;
+
+    });
+
+
+    console.log(
+        "IZRAČUNATI REZULTATI:",
+        results
+    );
+
+
+    // =============================================
+    // PRIKAZ EKRANA REZULTATA
+    // =============================================
+
+    showScreen(resultScreen);
+
+
+    // =============================================
+    // PORUKA ZA IZBORE 2023
+    // =============================================
 
     const messages =
         document.getElementById(
             "election-messages"
         );
-    // =============================================
-    // IZRAČUNAVANJE REZULTATA
-    // =============================================
 
-    parties.forEach(
-        function(party) {
 
     if (messages) {
-            results.push({
 
         if (
-            currentElection =
+            currentElection ===
             "2023-coalitions"
         ) {
-                name: party.name,
 
             messages.classList.remove(
                 "hidden"
             );
-                score:
-                    calculateWeightedScore(
-                        party
-                    )
 
-        } 
+        } else {
 
-
-        }
-    );
-
-
-    results.sort(
-        function(a, b) {
-
-            return b.score - a.score;
+            messages.classList.add(
+                "hidden"
+            );
 
         }
-    );
 
     }
 
+
     // =============================================
-    // ZAŠTITA OD PRIKAZIVANJA REZULTATA
+    // PROGRESS BAR
     // =============================================
 
     if (progressBar) {
-    // Još NE prikazujemo resultScreen.
-    // Prvo korisnik mora odgovoriti na pitanje.
 
         progressBar.style.width =
             "100%";
 
     }
-    const followUpDiv =
-        document.createElement("div");
 
-    followUpDiv.className =
-        "follow-up-question";
-
-    const results = [];
-
-    const followUpTitle =
-        document.createElement("h3");
-
-    parties.forEach(
-        function(party) {
-    followUpTitle.textContent =
-        "Da li ćete glasati za opciju koju ste prvobitno izabrali ili za opciju sa kojom se najviše podudarate na testu?";
-
-            results.push({
-
-                name: party.name,
-    followUpDiv.appendChild(
-        followUpTitle
-    );
-
-                score:
-                    calculateWeightedScore(
-                        party
-                    )
-
-            });
-    // =============================================
-    // PRVA OPCIJA
-    // =============================================
-
-        }
-    const option1Label =
-        document.createElement("label");
-
-    option1Label.style.display =
-        "block";
-
-    option1Label.style.marginBottom =
-        "8px";
-
-
-    const option1 =
-        document.createElement("input");
-
-    option1.type =
-        "radio";
-
-    option1.name =
-        "vote-after-test";
-
-    option1.value =
-        "prvobitni-izbor";
-
-
-    option1Label.appendChild(
-        option1
-    );
-
-    option1Label.appendChild(
-        document.createTextNode(
-            " Za prvobitno izabranu opciju"
-        )
-    );
-
-    results.sort(
-        function(a, b) {
-
-            return b.score - a.score;
-    followUpDiv.appendChild(
-        option1Label
-    );
-
-        }
 
     // =============================================
-    // DRUGA OPCIJA
+    // ČIŠĆENJE PRETHODNIH REZULTATA
     // =============================================
-
-    const option2Label =
-        document.createElement("label");
-
-    option2Label.style.display =
-        "block";
-
-    option2Label.style.marginBottom =
-        "8px";
-
-
-    const option2 =
-        document.createElement("input");
-
-    option2.type =
-        "radio";
-
-    option2.name =
-        "vote-after-test";
-
-    option2.value =
-        "najvece-podudaranje";
-
-
-    option2Label.appendChild(
-        option2
-    );
-
-    option2Label.appendChild(
-        document.createTextNode(
-            " Za opciju sa najvećim podudaranjem"
-        )
-    );
 
     resultsDiv.innerHTML = "";
 
-    followUpDiv.appendChild(
-        option2Label
-    );
 
-results.forEach(
-    function(result, index) {
-
-        const div =
-            document.createElement(
-                "div"
-            );
     // =============================================
-    // DUGME ZA NASTAVAK
+    // PRIKAZ REZULTATA STRANAKA
     // =============================================
 
-        div.className =
-            "result-card";
-    const continueButton =
-        document.createElement("button");
+    results.forEach(
+        function(result, index) {
 
-        let recommendation = "";
-    continueButton.textContent =
-        "Nastavi na rezultate";
-
-        if (result.score > 70) {
-    continueButton.className =
-        "continue-results-button";
-
-            div.classList.add(
-                "recommended"
-            );
-    continueButton.style.marginTop =
-        "15px";
-
-            recommendation =
-                "Veoma velika preporuka";
-
-        } else if (result.score >= 50) {
-    continueButton.onclick =
-        function() {
-
-            div.classList.add(
-                "moderate"
-            );
-            // Mora prvo da izabere opciju
-            if (!voteAfterTest) {
-
-            recommendation =
-                "Dobra opcija";
-                alert(
-                    "Molimo vas da izaberete jednu od ponuđenih opcija."
-                );
-
-        } else {
-                return;
-
-            div.classList.add(
-                "not-recommended"
-            }
-
-
-            console.log(
-                "GLAS POSLE TESTA:",
-                voteAfterTest
-            );
-
-            recommendation =
-                "Ne preporučuje se glasanje za njih";
-        }
-
-        div.innerHTML =
-            // =====================================
-            // TEK SADA PRIKAZUJEMO REZULTATE
-            // =====================================
-
-            "<h3>" +
-            (index + 1) +
-            ". " +
-            result.name +
-            "</h3>" +
-            showScreen(resultScreen);
-
-            "<p>" +
-            "Podudarnost: " +
-            result.score +
-            "%" +
-            "</p>" +
-
-            "<p class=\"recommendation\">" +
-            recommendation +
-            "</p>";
-            const messages =
-                document.getElementById(
-                    "election-messages"
-                );
-
-        resultsDiv.appendChild(
-            div
-        );
-
-    }
-);
-            if (messages) {
-
-                if (
-                    currentElection ===
-                    "2023-coalitions"
-                ) {
-
-    createResultNavigation();
-// =============================================
-// DUGME ZA DELJENJE REZULTATA
-// =============================================
-                    messages.classList.remove(
-                        "hidden"
-                    );
-
-const shareButton =
-    document.createElement("button");
-                } else {
-
-shareButton.textContent =
-    "Podeli rezultat";
-                    messages.classList.add(
-                        "hidden"
-                    );
-
-shareButton.className =
-    "share-result-button";
-                }
-
-shareButton.onclick =
-    function() {
-            }
-
-        shareResults(results);
-
-    };
-            if (progressBar) {
-
-resultsDiv.appendChild(
-    shareButton
-);
-    // =============================================
-// PITANJE NAKON TESTA
-// =============================================
-                progressBar.style.width =
-                    "100%";
-
-const followUpDiv =
-    document.createElement("div");
-            }
-
-followUpDiv.className =
-    "follow-up-question";
-
-            // =====================================
-            // PRIKAZ REZULTATA
-            // =====================================
-
-const followUpTitle =
-    document.createElement("h3");
-            resultsDiv.innerHTML = "";
-
-followUpTitle.textContent =
-    "Da li ćete glasati za opciju koju ste prvobitno izabrali ili za opciju sa kojom se najviše podudarate na testu?";
-
-followUpDiv.appendChild(
-    followUpTitle
-);
-            results.forEach(
-                function(result, index) {
-
-                    const div =
-                        document.createElement(
-                            "div"
-                        );
-
-// ---------------------------------------------
-// PRVA OPCIJA
-// ---------------------------------------------
-                    div.className =
-                        "result-card";
-
-const option1Label =
-    document.createElement("label");
-
-option1Label.style.display =
-    "block";
-                    let recommendation = "";
-
-option1Label.style.marginBottom =
-    "8px";
-
-                    if (result.score > 70) {
-
-const option1 =
-    document.createElement("input");
-                        div.classList.add(
-                            "recommended"
-                        );
-
-option1.type =
-    "radio";
-                        recommendation =
-                            "Veoma velika preporuka";
-
-option1.name =
-    "vote-after-test";
-                    } else if (
-                        result.score >= 50
-                    ) {
-
-option1.value =
-    "prvobitni-izbor";
-option1.onchange = function() {
-                        div.classList.add(
-                            "moderate"
-                        );
-
-    voteAfterTest = this.value;
-                        recommendation =
-                            "Dobra opcija";
-
-    console.log(
-        "GLAS POSLE TESTA:",
-        voteAfterTest
-    );
-sendResultsToGoogleSheet(results);
-};
-                    } else {
-
-option1Label.appendChild(
-    option1
-);
-                        div.classList.add(
-                            "not-recommended"
-                        );
-
-option1Label.appendChild(
-    document.createTextNode(
-        " Za prvobitno izabranu opciju"
-    )
-);
-                        recommendation =
-                            "Ne preporučuje se glasanje za njih";
-
-                    }
-
-followUpDiv.appendChild(
-    option1Label
-);
-
-                    div.innerHTML =
-
-// ---------------------------------------------
-// DRUGA OPCIJA
-// ---------------------------------------------
-                        "<h3>" +
-                        (index + 1) +
-                        ". " +
-                        result.name +
-                        "</h3>" +
-
-const option2Label =
-    document.createElement("label");
-                        "<p>" +
-                        "Podudarnost: " +
-                        result.score +
-                        "%" +
-                        "</p>" +
-
-option2Label.style.display =
-    "block";
-                        "<p class=\"recommendation\">" +
-                        recommendation +
-                        "</p>";
-
-option2Label.style.marginBottom =
-    "8px";
-
-                    resultsDiv.appendChild(
-                        div
-                    );
-
-const option2 =
-    document.createElement("input");
-                }
-            );
-
-option2.type =
-    "radio";
-
-option2.name =
-    "vote-after-test";
-            // =====================================
-            // NAVIGACIJA REZULTATA
-            // =====================================
-
-option2.value =
-    "najvece-podudaranje";
-option2.onchange = function() {
-            createResultNavigation();
-
-    voteAfterTest = this.value;
-
-    console.log(
-        "GLAS POSLE TESTA:",
-        voteAfterTest
-            // =====================================
-            // DUGME ZA DELJENJE
-            // =====================================
-
-            const shareButton =
+            const div =
                 document.createElement(
-                    "button"
+                    "div"
                 );
 
-            shareButton.textContent =
-                "Podeli rezultat";
 
-            shareButton.className =
-                "share-result-button";
+            div.className =
+                "result-card";
 
 
-            shareButton.onclick =
-                function() {
+            let recommendation = "";
 
-                    shareResults(results);
 
-                };
+            if (result.score > 70) {
+
+                div.classList.add(
+                    "recommended"
+                );
+
+                recommendation =
+                    "Veoma velika podudarnost";
+
+
+            } else if (result.score >= 50) {
+
+                div.classList.add(
+                    "moderate"
+                );
+
+                recommendation =
+                    "Dobra podudarnost";
+
+
+            } else {
+
+                div.classList.add(
+                    "not-recommended"
+                );
+
+                recommendation =
+                    "Manja podudarnost";
+
+            }
+
+
+            div.innerHTML =
+
+                "<h3>" +
+                (index + 1) +
+                ". " +
+                result.name +
+                "</h3>" +
+
+                "<p>" +
+                "Podudarnost: " +
+                result.score.toFixed(2) +
+                "%" +
+                "</p>" +
+
+                "<p class=\"recommendation\">" +
+                recommendation +
+                "</p>";
 
 
             resultsDiv.appendChild(
-                shareButton
+                div
             );
 
+        }
+    );
 
-            // =====================================
-            // SLANJE U GOOGLE SHEETS
-            // =====================================
 
-            sendResultsToGoogleSheet(
-                results
-            );
+    console.log(
+        "STRANKE PRIKAZANE:",
+        resultsDiv.children.length
+    );
+
+
+    // =============================================
+    // NAVIGACIJA
+    // =============================================
+
+    createResultNavigation();
+
+
+    // =============================================
+    // DUGME ZA DELJENJE
+    // =============================================
+
+    const shareButton =
+        document.createElement(
+            "button"
+        );
+
+
+    shareButton.textContent =
+        "Podeli rezultat";
+
+
+    shareButton.className =
+        "share-result-button";
+
+
+    shareButton.onclick =
+        function() {
+
+            shareResults(results);
 
         };
 
 
-    followUpDiv.appendChild(
-        continueButton
-    );
-sendResultsToGoogleSheet(results);
-};
-
-option2Label.appendChild(
-    option2
-);
-
-option2Label.appendChild(
-    document.createTextNode(
-        " Za opciju sa najvećim podudaranjem"
-    )
-);
-    // =============================================
-    // PRIKAZ PITANJA PRE REZULTATA
-    // =============================================
-
-    showScreen(resultScreen);
-
-followUpDiv.appendChild(
-    option2Label
-);
-
-// Dodavanje pitanja na stranicu
-resultsDiv.appendChild(
-    followUpDiv
-);
-    resultsDiv.innerHTML = "";
-
     resultsDiv.appendChild(
-        followUpDiv
+        shareButton
     );
 
 
-    if (progressBar) {
+    // =============================================
+    // SLANJE U GOOGLE SHEETS
+    // =============================================
 
-        progressBar.style.width =
-            "100%";
-
-    }
+    sendResultsToGoogleSheet(
+        results
+    );
 
 }
+
 // ============================================================
 // SLANJE REZULTATA U GOOGLE SHEET
 // ============================================================

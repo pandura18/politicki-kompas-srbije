@@ -876,7 +876,6 @@ function displayPartyResults(results) {
                 results
             );
 
-        };
 
 
     followUpDiv.appendChild(

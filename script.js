@@ -686,8 +686,7 @@ function showResults() {
                         party
                     )
 
-        } else {
-            });
+        } 
 
             messages.classList.add(
                 "hidden"

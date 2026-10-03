@@ -652,12 +652,12 @@ function showResults() {
 
     console.log("SHOW RESULTS - PRIPREMA");
 
-    // Izračunavanje rezultata
     const results = [];
 
     parties.forEach(function(party) {
 
-        const score = calculateWeightedScore(party);
+        const score =
+            calculateWeightedScore(party);
 
         results.push({
             name: party.name,
@@ -666,21 +666,21 @@ function showResults() {
 
     });
 
-    // Sortiranje od najvećeg ka najmanjem rezultatu
     results.sort(function(a, b) {
         return b.score - a.score;
     });
 
-    console.log("IZRAČUNATI REZULTATI:", results);
+    console.log(
+        "IZRAČUNATI REZULTATI:",
+        results
+    );
 
-    // Prikaži ekran rezultata
     showScreen(resultScreen);
 
-    // Očisti prethodni sadržaj
     resultsDiv.innerHTML = "";
 
-    // Naslov pitanja
-    const question = document.createElement("h2");
+    const question =
+        document.createElement("h2");
 
     question.textContent =
         "Kako ćete postupiti?";
@@ -688,13 +688,15 @@ function showResults() {
     resultsDiv.appendChild(question);
 
 
-    // Opcija 1
-    const option1 = document.createElement("label");
+    // OPCIJA 1
+    const option1 =
+        document.createElement("label");
 
     option1.style.display = "block";
     option1.style.margin = "15px 0";
 
-    const radio1 = document.createElement("input");
+    const radio1 =
+        document.createElement("input");
 
     radio1.type = "radio";
     radio1.name = "vote-after-test";
@@ -711,13 +713,15 @@ function showResults() {
     resultsDiv.appendChild(option1);
 
 
-    // Opcija 2
-    const option2 = document.createElement("label");
+    // OPCIJA 2
+    const option2 =
+        document.createElement("label");
 
     option2.style.display = "block";
     option2.style.margin = "15px 0";
 
-    const radio2 = document.createElement("input");
+    const radio2 =
+        document.createElement("input");
 
     radio2.type = "radio";
     radio2.name = "vote-after-test";
@@ -734,45 +738,57 @@ function showResults() {
     resultsDiv.appendChild(option2);
 
 
-    // Dugme
-    const continueButton = document.createElement("button");
+    // DUGME
+    const continueButton =
+        document.createElement("button");
 
     continueButton.type = "button";
+
     continueButton.textContent =
         "Nastavi na rezultate";
 
-    continueButton.style.marginTop = "20px";
+    continueButton.style.marginTop =
+        "20px";
 
-    continueButton.onclick = function(event) {
 
-        event.preventDefault();
+    continueButton.onclick =
+        function(event) {
 
-        const selected =
-            document.querySelector(
-                'input[name="vote-after-test"]:checked'
+            event.preventDefault();
+
+            const selected =
+                document.querySelector(
+                    'input[name="vote-after-test"]:checked'
+                );
+
+            if (!selected) {
+
+                alert(
+                    "Molimo izaberite jednu od opcija."
+                );
+
+                return;
+            }
+
+            voteAfterTest =
+                selected.value;
+
+            console.log(
+                "GLAS POSLE TESTA:",
+                voteAfterTest
             );
 
-        if (!selected) {
-
-            alert(
-                "Molimo izaberite jednu od opcija."
+            displayPartyResults(
+                results
             );
 
-            return;
-        }
+        };
 
-        voteAfterTest = selected.value;
 
-        console.log(
-            "GLAS POSLE TESTA:",
-            voteAfterTest
-        );
+    resultsDiv.appendChild(
+        continueButton
+    );
 
-        // Tek sada prikazujemo rezultate
-        displayPartyResults(results);
-    };
-
-    resultsDiv.appendChild(continueButton);
 }
 function displayPartyResults(results) {
 
@@ -791,13 +807,15 @@ function displayPartyResults(results) {
         const resultCard =
             document.createElement("div");
 
-        resultCard.className = "result-card";
+        resultCard.className =
+            "result-card";
 
 
         const name =
             document.createElement("h3");
 
-        name.textContent = result.name;
+        name.textContent =
+            result.name;
 
 
         const score =
@@ -808,6 +826,7 @@ function displayPartyResults(results) {
 
 
         resultCard.appendChild(name);
+
         resultCard.appendChild(score);
 
         resultsDiv.appendChild(resultCard);
@@ -821,16 +840,39 @@ function displayPartyResults(results) {
     );
 
 
-    // Navigacija rezultata, ako je koristiš
+    // Navigacija
     createResultNavigation();
 
 
-    // Dugme za deljenje rezultata
-    // ovde ostaje tvoj postojeći kod za "Podeli rezultat"
+    // Dugme za deljenje
+    const shareButton =
+        document.createElement("button");
+
+    shareButton.textContent =
+        "Podeli rezultat";
+
+    shareButton.className =
+        "share-result-button";
 
 
-    // TEK SADA šaljemo podatke u Google Sheets
-    sendResultsToGoogleSheet(results);
+    shareButton.onclick =
+        function() {
+
+            shareResults(results);
+
+        };
+
+
+    resultsDiv.appendChild(
+        shareButton
+    );
+
+
+    // Slanje u Google Sheets
+    sendResultsToGoogleSheet(
+        results
+    );
+
 }
             // =====================================
             // NAVIGACIJA REZULTATA

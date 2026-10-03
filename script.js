@@ -904,7 +904,6 @@ function displayPartyResults(results) {
 
     }
 
-}
 function shareResults(results) {
 
     if (!results || results.length === 0) {

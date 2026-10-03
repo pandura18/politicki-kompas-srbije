@@ -927,7 +927,6 @@ resultsDiv.appendChild(
     followUpDiv
 );
 }
-}
 function shareResults(results) {
 
     if (!results || results.length === 0) {

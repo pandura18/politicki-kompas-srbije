@@ -438,7 +438,7 @@ function showPriorityScreen() {
 
             var followUpTitle =
                 document.createElement("h3");
-
+console.log("STIGAO DO DRUGOG PITANJA");
             followUpTitle.style.marginTop =
                 "25px";
 

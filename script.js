@@ -353,39 +353,70 @@ function showQuestion() {
 
 function showPriorityScreen() {
 
-     var votingChoice =
+    var votingChoice =
         document.getElementById("voting-choice");
+
 
     if (votingChoice) {
 
         votingChoice.innerHTML = "";
 
-        // Pitanje o planiranom glasu
-        // prikazuje se samo za izbore 2026.
+
+        // =====================================================
+        // PITANJE 1 — ZA KOGA PLANIRATE DA GLASATE?
+        // =====================================================
+
         if (currentElection === "2026") {
+
+            var voteTitle =
+                document.createElement("h3");
+
+            voteTitle.textContent =
+                "Za koga planirate da glasate?";
+
+            votingChoice.appendChild(
+                voteTitle
+            );
+
 
             parties2026.forEach(function(party) {
 
                 var label =
                     document.createElement("label");
 
-                label.style.display = "block";
-                label.style.marginBottom = "8px";
+                label.style.display =
+                    "block";
+
+                label.style.marginBottom =
+                    "8px";
+
 
                 var radio =
                     document.createElement("input");
 
-                radio.type = "radio";
-                radio.name = "planned-vote";
-                radio.value = party.name;
+                radio.type =
+                    "radio";
 
-                radio.onchange = function() {
+                radio.name =
+                    "planned-vote";
 
-                    plannedVote = this.value;
+                radio.value =
+                    party.name;
 
-                };
 
-                label.appendChild(radio);
+                radio.onchange =
+                    function() {
+
+                        plannedVote =
+                            this.value;
+
+                    };
+
+
+                label.appendChild(
+                    radio
+                );
+
 
                 label.appendChild(
                     document.createTextNode(
@@ -393,85 +424,158 @@ function showPriorityScreen() {
                     )
                 );
 
-                votingChoice.appendChild(label);
+
+                votingChoice.appendChild(
+                    label
+                );
 
             });
+
+
+            // =================================================
+            // PITANJE 2 — ŠTA ĆETE URADITI POSLE TESTA?
+            // =================================================
+
+            var followUpTitle =
+                document.createElement("h3");
+
+            followUpTitle.style.marginTop =
+                "25px";
+
+            followUpTitle.textContent =
+                "Da li ćete glasati za opciju koju ste prvobitno izabrali ili za opciju sa kojom imate najveću podudarnost na testu?";
+
+            votingChoice.appendChild(
+                followUpTitle
+            );
+
+
+            // ---------------------------------------------
+            // OPCIJA 1
+            // ---------------------------------------------
+
+            var plannedLabel =
+                document.createElement("label");
+
+            plannedLabel.style.display =
+                "block";
+
+            plannedLabel.style.marginBottom =
+                "8px";
+
+
+            var plannedRadio =
+                document.createElement("input");
+
+            plannedRadio.type =
+                "radio";
+
+            plannedRadio.name =
+                "vote-after-test";
+
+            plannedRadio.value =
+                "prvobitni-izbor";
+
+
+            plannedRadio.onchange =
+                function() {
+
+                    voteAfterTest =
+                        this.value;
+
+                    console.log(
+                        "GLAS POSLE TESTA:",
+                        voteAfterTest
+                    );
+
+                };
+
+
+            plannedLabel.appendChild(
+                plannedRadio
+            );
+
+
+            plannedLabel.appendChild(
+                document.createTextNode(
+                    " Glasaću za opciju koju sam prvobitno izabrao/la"
+                )
+            );
+
+
+            votingChoice.appendChild(
+                plannedLabel
+            );
+
+
+            // ---------------------------------------------
+            // OPCIJA 2
+            // ---------------------------------------------
+
+            var resultLabel =
+                document.createElement("label");
+
+            resultLabel.style.display =
+                "block";
+
+            resultLabel.style.marginBottom =
+                "8px";
+
+
+            var resultRadio =
+                document.createElement("input");
+
+            resultRadio.type =
+                "radio";
+
+            resultRadio.name =
+                "vote-after-test";
+
+            resultRadio.value =
+                "najvece-podudaranje";
+
+
+            resultRadio.onchange =
+                function() {
+
+                    voteAfterTest =
+                        this.value;
+
+                    console.log(
+                        "GLAS POSLE TESTA:",
+                        voteAfterTest
+                    );
+
+                };
+
+
+            resultLabel.appendChild(
+                resultRadio
+            );
+
+
+            resultLabel.appendChild(
+                document.createTextNode(
+                    " Glasaću za opciju sa kojom imam najveću podudarnost na testu"
+                )
+            );
+
+
+            votingChoice.appendChild(
+                resultLabel
+            );
 
         }
 
     }
 
-    showScreen(priorityScreen);
+
+    showScreen(
+        priorityScreen
+    );
 
 }
 
-
-if (priorityNext) {
-
-    priorityNext.onclick = function() {
-
-        // Za izbore 2026. mora biti izabrana opcija
-        if (
-            currentElection === "2026" &&
-            !plannedVote
-        ) {
-
-            alert(
-                "Molimo izaberite za koga planirate da glasate."
-            );
-
-            return;
-        }
-
-
-        economicPriority =
-            Number(
-                document.getElementById(
-                    "priority-economic"
-                ).value
-            );
-
-        socialPriority =
-            Number(
-                document.getElementById(
-                    "priority-social"
-                ).value
-            );
-
-        foreignPriority =
-            Number(
-                document.getElementById(
-                    "priority-foreign"
-                ).value
-            );
-
-        globalPriority =
-            Number(
-                document.getElementById(
-                    "priority-global"
-                ).value
-            );
-
-
-        console.log(
-            "PRIORITETI:",
-            economicPriority,
-            socialPriority,
-            foreignPriority,
-            globalPriority
-        );
-
-        console.log(
-            "PLANIRANI GLAS:",
-            plannedVote
-        );
-
-
-        showResults();
-
-    };
-
-}
 
 
 // ============================================================

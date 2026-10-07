@@ -37,7 +37,8 @@ const quizScreen =
 
 const priorityScreen =
     document.getElementById("priority-screen");
-
+const priorityNext =
+    document.getElementById("priority-next");
 const resultScreen =
     document.getElementById("result-screen");
 
@@ -576,7 +577,80 @@ console.log("STIGAO DO DRUGOG PITANJA");
 
 }
 
+if (priorityNext) {
 
+    priorityNext.onclick = function() {
+
+        if (
+            currentElection === "2026" &&
+            !plannedVote
+        ) {
+            alert(
+                "Molimo izaberite za koga planirate da glasate."
+            );
+            return;
+        }
+
+        if (
+            currentElection === "2026" &&
+            !voteAfterTest
+        ) {
+            alert(
+                "Molimo odgovorite šta ćete uraditi nakon testa."
+            );
+            return;
+        }
+
+        economicPriority =
+            Number(
+                document.getElementById(
+                    "priority-economic"
+                ).value
+            );
+
+        socialPriority =
+            Number(
+                document.getElementById(
+                    "priority-social"
+                ).value
+            );
+
+        foreignPriority =
+            Number(
+                document.getElementById(
+                    "priority-foreign"
+                ).value
+            );
+
+        globalPriority =
+            Number(
+                document.getElementById(
+                    "priority-global"
+                ).value
+            );
+
+        console.log(
+            "PRIORITETI:",
+            economicPriority,
+            socialPriority,
+            foreignPriority,
+            globalPriority
+        );
+
+        console.log(
+            "PLANIRANI GLAS:",
+            plannedVote
+        );
+
+        console.log(
+            "GLAS POSLE TESTA:",
+            voteAfterTest
+        );
+
+        showResults();
+    };
+
+}
 
 // ============================================================
 // NAZAD

@@ -224,11 +224,11 @@ const parties2023 = [
 {
     name: "PSS-BK - Pokret snaga Srbije - Bogoljub Karić",
     answers: [
-        5, 3, 4, 2, 5, 3, 2, 4, 2, 3, 1, 1, 4, 4, 4, 5, 3, 3, 3, 3, 4, 4, 3, 2, 3, 4, 4, 4, 5, 4
+        5, 3, 4, 2, 5, 3, 2, 4, 2, 3, 1, 1, 4, 4, 4, 5, 3, 3, 1, 3, 4, 4, 3, 2, 3, 4, 4, 4, 5, 4
     ],
     total: 2,
     economic: 1.5,
-    social: 3.5,
+    social: 2.5,
     foreign: -3,
     global: 6,
     color: "#F9A825"
@@ -614,11 +614,11 @@ color:"#242970"
 	{
     name: "Pokret snaga Srbije",
     answers: [
-        5, 3, 4, 2, 5, 3, 2, 4, 2, 3, 1, 1, 4, 4, 4, 5, 3, 3, 3, 3, 4, 4, 3, 2, 3, 4, 4, 4, 5, 4
+        5, 3, 4, 2, 5, 3, 2, 4, 2, 3, 1, 1, 4, 4, 4, 5, 3, 3, 1, 3, 4, 4, 3, 2, 3, 4, 4, 4, 5, 4
     ],
     total: 2,
     economic: 1.5,
-    social: 3.5,
+    social: 2.5,
     foreign: -3,
     global: 6,
     color: "#F9A825"

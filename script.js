@@ -81,8 +81,6 @@ const answersButtons =
 const backBtn =
     document.getElementById("back-btn");
 
-const priorityNext =
-    document.getElementById("priority-next");
 
 
 // ============================================================
